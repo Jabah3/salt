@@ -5,22 +5,29 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class User extends Eloquent implements UserInterface, RemindableInterface {
-
-	use UserTrait, RemindableTrait;
+class Cliente extends Eloquent implements UserInterface, RemindableInterface {
 
 	/**
 	 * The database table used by the model.
 	 *
 	 * @var string
 	 */
-	protected $table = 'users';
+	protected $table = 'clientes';
 
 	/**
 	 * The attributes excluded from the model's JSON form.
 	 *
 	 * @var array
 	 */
-	protected $hidden = array('password', 'remember_token');
+	
+
+	public function rol(){
+		return $this->hasMany('Rol','id');
+	}
+
+	public function sucursal(){
+		return $this->hasMany('Sucursal','id');
+	}
+
 
 }
