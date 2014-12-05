@@ -15,6 +15,12 @@
 -Administracion
 
 
+nombre_db:pruebas_salt
+
+Usuario:pruebas_salt
+Contraseña:SaltSitem#1
+
+192.185.31.33
 
 
 
