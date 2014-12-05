@@ -1,0 +1,29 @@
+**** Modulos *****
+
+-Usuarios
+-Roles
+-Grupos
+
+-Sucursales
+-Clientes
+-Unidad de medida
+-Productos 
+-Insumos
+-Recetas
+-Punto de Venta
+
+-Administracion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
