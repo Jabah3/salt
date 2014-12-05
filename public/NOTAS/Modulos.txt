@@ -10,7 +10,7 @@
 -Productos 
 -Insumos
 -Recetas
--Punto de Venta
+-Punto de Venta7
 
 -Administracion
 
