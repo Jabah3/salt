@@ -23,6 +23,14 @@ class Proveedor extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	
 
+	public function insumoProveedor()
+	{
+		return $this->hasMany('InsumoProveedor','proveedor_id');
+	}
+
+	public function productoProveedor()
+	{
+		return $this->hasMany('Productoproveedor', 'proveedor_id');
+	}
 }

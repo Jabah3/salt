@@ -23,6 +23,26 @@ class Venta extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	
+
+	public function ventaDetalle()
+	{
+		return $this->hasMany('Ventadetalle','venta_id');
+	}
+
+
+
+
+	public function clientes()
+	{
+		return $this->belongsTo('Cliente');
+	}
+
+
+
+
+	public function usuarios()
+	{
+		return $this->belongsTo('Usuario');
+	}
 
 }

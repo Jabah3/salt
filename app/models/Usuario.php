@@ -23,6 +23,32 @@ class Usuario extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	
+
+	public function registroEvento()
+	{
+		return $this->hasMany('Registroevento', 'usuario_id')
+	}
+
+	public function venta()
+	{
+		return $this->hasMany('Venta', 'usuario_id');
+	}
+
+
+
+	public function grupo()
+	{
+		return $this->belongsTo('Grupo');
+	}
+
+	public function sucursal()
+	{
+		return $this->belongsTo('Sucursal');
+	}
+
+	public function rol()
+	{
+		return $this->belongsTo('Rol');
+	}
 
 }

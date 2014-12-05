@@ -23,6 +23,10 @@ class Sucursal extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	
+
+	public function usuarios()
+	{
+		return $this->hasMany('Usuario', 'sucursal_id');
+	}
 
 }

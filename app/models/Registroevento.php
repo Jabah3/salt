@@ -23,6 +23,10 @@ class Registroevento extends Eloquent implements UserInterface, RemindableInterf
 	 *
 	 * @var array
 	 */
-	
+
+	public function usuarios()
+	{
+		return $this->belongsTo('Usuario');
+	}
 
 }

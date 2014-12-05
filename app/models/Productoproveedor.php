@@ -23,6 +23,16 @@ class Productoproveedor extends Eloquent implements UserInterface, RemindableInt
 	 *
 	 * @var array
 	 */
-	
+
+
+	public function proveedor()
+	{
+		return $this->belongsTo('Proveedor');
+	}
+
+	public function producto()
+	{
+		return $this->belongsTo('Producto');
+	}
 
 }

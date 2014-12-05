@@ -23,6 +23,15 @@ class Receta extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-	
+
+	public function producto()
+	{
+		return $this->belongsTo('Producto');
+	}
+
+	public function insumo()
+	{
+		return $this->belongsTo('Insumo');
+	}
 
 }

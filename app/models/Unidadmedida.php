@@ -23,6 +23,15 @@ class Unidadmedida extends Eloquent implements UserInterface, RemindableInterfac
 	 *
 	 * @var array
 	 */
-	
+
+	public function insumo()
+	{
+		return $this->hasMany('Insumo','unidad_medida_id');
+	}
+
+	public function ventaDetalle()
+	{
+		return $this->hasMany('Ventadetalle','unidad_medida_id');
+	}
 
 }

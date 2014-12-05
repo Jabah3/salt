@@ -5,11 +5,11 @@ use Illuminate\Auth\UserInterface;
 use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
-class Rol extends Eloquent implements UserInterface, RemindableInterface {
+class Ventadetalle extends Eloquent implements UserInterface, RemindableInterface {
 
 	use UserTrait, RemindableTrait;
 
-	protected $table = 'roles';
+	protected $table = 'ventas_detalles';
 
 	/**
 	 * The database table used by the model.
@@ -24,10 +24,22 @@ class Rol extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 
-	public function usuarios()
+	public function venta()
 	{
-		return $this->hasMany('Usuario', 'rol_id');
+		return $this->belongsTo('Venta');
 	}
+
+
+	public function producto()
+	{
+		return $this->belongsTo('Producto');
+	}
+
+	public function unidadMedida()
+	{
+		return $this->belongsTo('Unidadmedida');
+	}
+
 
 
 }
