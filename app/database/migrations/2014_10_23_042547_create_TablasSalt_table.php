@@ -59,16 +59,16 @@ class CreateTablasSaltTable extends Migration {
 
 		Schema::create('usuarios',function($tabla){
 			$tabla->increments('id');						
-			$tabla->string('nombres');
-			$tabla->string('apellidos');
+			$tabla->string('nombre');
+			$tabla->string('apellido');
 			$tabla->integer('rol_id')->unsigned();
 			$tabla->foreign('rol_id')->references('id')->on('roles')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->integer('sucursal_id')->unsigned();
 			$tabla->foreign('sucursal_id')->references('id')->on('sucursales')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->string('telefono');
 			$tabla->string('email');
-			$tabla->integer('grupos_id')->unsigned();
-			$tabla->foreign('grupos_id')->references('id')->on('grupos')->onDelete('restrict')->onUpdate('restrict');
+			$tabla->integer('grupo_id')->unsigned();
+			$tabla->foreign('grupo_id')->references('id')->on('grupos')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->string('ciudad');
 			$tabla->string('estado');
 			$tabla->integer('activo');

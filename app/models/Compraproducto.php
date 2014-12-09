@@ -25,4 +25,14 @@ class Compraproducto extends Eloquent implements UserInterface, RemindableInterf
 	 */
 	
 
+	public function productos(){
+	    return $this->belongsTo('Producto');
+	}
+
+
+	public function getReminderId(){
+		return $this->id;
+	}
+
+
 }

@@ -24,6 +24,14 @@ class Comprainsumo extends Eloquent implements UserInterface, RemindableInterfac
 	 * @var array
 	 */
 	
+	public function insumo(){
+	    return $this->belongsTo('Insumo');
+	}
+
+
+	public function getReminderId(){
+		return $this->id;
+	}
 
 
 }

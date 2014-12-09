@@ -25,4 +25,9 @@ class Grupo extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	
 
+	public function usuarios(){
+		return $this->hasMany('Usuario','grupo_id');
+		//return $this->hasMany('Deposito');
+	}
+
 }

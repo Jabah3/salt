@@ -21,12 +21,13 @@ class Cliente extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	
 
-	public function rol(){
-		return $this->hasMany('Rol','id');
+	public function venta(){
+	    return $this->belongsTo('Ventas');
 	}
 
-	public function sucursal(){
-		return $this->hasMany('Sucursal','id');
+
+	public function getReminderId(){
+		return $this->id;
 	}
 
 
