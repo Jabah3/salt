@@ -320,7 +320,7 @@ class CreateTablasSaltTable extends Migration {
 		Schema::drop('inventarios');
 		Schema::drop('productos');
 		Schema::drop('productos_proveedors'); 
-		Schema::drop('proveedors'); 
+		Schema::drop('proveedores'); 
 		Schema::drop('recetas');
 		Schema::drop('registros_eventos');
 		Schema::drop('roles, sucursales');
