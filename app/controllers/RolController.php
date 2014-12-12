@@ -21,4 +21,38 @@ class RolController extends BaseController {
 		return View::make('roles.index')->with('roles',$roles);
 	}
 
+
+
+	public function postGuardarol()
+	{
+		$Rol = new Rol; 
+		$Rol->nombre=$nombre=Input::get('nombre');
+		$Rol->descripcion=$descripcion=Input::get('descripcion');
+		$Rol->save();
+
+		return $nombre;
+	}
+
+
+
+
+
+	public function postEliminarol()
+	{
+		$id=Input::get('id');
+	 	$eliminarol = Rol::find($id);
+	        
+	    if (is_null ($eliminarol))
+	    {
+	        App::abort(404);
+	    }
+	        
+	    $eliminarol->delete();
+	}
+
+
+
+
+	
+
 }
