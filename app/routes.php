@@ -22,6 +22,17 @@ Route::get('ejemplo', function()
 	return "Holaaa";
 });
 
+/*Llamamos al controlador Auth*/
+
+Route::get('login','AuthController@showLogin'); // Mostrar login
+Route::post('login','AuthController@postLogin'); // Verificar datos
+Route::get('logout','AuthController@logOut'); //Finalizar sesion
+
+Route::group(['before' => 'auth'], function()
+{
+	Route::get('/','HomneController@showWelcome'); // Vista de inicio
+});
+
 
 Route::controller('roles','RolController');
 Route::controller('clientes','ClienteController');
