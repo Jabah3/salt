@@ -25,7 +25,7 @@ class CreateTablasSaltTable extends Migration {
 
 
 		Schema::create('roles',function($tabla){
-			$tabla->increments('id');						
+			$tabla->increments('id');
 			$tabla->string('nombre');
 			$tabla->string('descripcion');
 			$tabla->timestamps();
@@ -34,7 +34,7 @@ class CreateTablasSaltTable extends Migration {
 
 
 		Schema::create('sucursales',function($tabla){
-			$tabla->increments('id');						
+			$tabla->increments('id');
 			$tabla->string('nombre');
 			$tabla->string('ciudad');
 			$tabla->string('calle');
@@ -50,7 +50,7 @@ class CreateTablasSaltTable extends Migration {
 
 
 		Schema::create('grupos',function($tabla){
-			$tabla->increments('id');						
+			$tabla->increments('id');
 			$tabla->string('nombre');
 			$tabla->string('descripcion');
 			$tabla->timestamps();
@@ -58,7 +58,9 @@ class CreateTablasSaltTable extends Migration {
 
 
 		Schema::create('usuarios',function($tabla){
-			$tabla->increments('id');						
+			$tabla->increments('id');
+			$tabla->string('usuario')->unique();
+			$tabla->string('contrasena');
 			$tabla->string('nombre');
 			$tabla->string('apellido');
 			$tabla->integer('rol_id')->unsigned();
@@ -66,7 +68,7 @@ class CreateTablasSaltTable extends Migration {
 			$tabla->integer('sucursal_id')->unsigned();
 			$tabla->foreign('sucursal_id')->references('id')->on('sucursales')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->string('telefono');
-			$tabla->string('email');
+			$tabla->string('email')->uniqued();
 			$tabla->integer('grupo_id')->unsigned();
 			$tabla->foreign('grupo_id')->references('id')->on('grupos')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->string('ciudad');
@@ -75,11 +77,12 @@ class CreateTablasSaltTable extends Migration {
 			$tabla->string('sexo');
 			$tabla->string('foto');
 			$tabla->string('descripcion');
+			$tabla->string('remember_token',100)->nullable();
 			$tabla->timestamps();
 		});
-		
 
-		
+
+
 		Schema::create('insumos',function($tabla){
 			$tabla->increments('id');
 			$tabla->string('nombre');
@@ -95,17 +98,17 @@ class CreateTablasSaltTable extends Migration {
 
 
 		Schema::create('proveedores',function($tabla){
-			$tabla->increments('id');			
-			$tabla->string('empresa');			
+			$tabla->increments('id');
+			$tabla->string('empresa');
 			$tabla->string('nombre');
-			$tabla->string('rfc');	
-			$tabla->string('pais');	
+			$tabla->string('rfc');
+			$tabla->string('pais');
 			$tabla->string('estado');
-			$tabla->string('ciudad');	
+			$tabla->string('ciudad');
 			$tabla->integer('codigo_postal');
-			$tabla->string('colonia');	
+			$tabla->string('colonia');
 			$tabla->string('calle');
-			$tabla->string('telefono');				
+			$tabla->string('telefono');
 			$tabla->string('email');
 			$tabla->integer('activo');
 			$tabla->integer('insumo_id')->unsigned();
@@ -149,7 +152,7 @@ class CreateTablasSaltTable extends Migration {
 			$tabla->integer('productos_id')->unsigned();
 			$tabla->foreign('productos_id')->references('id')->on('productos')->onDelete('cascade')->onUpdate('cascade');
 		});
-		
+
 
 
 
@@ -169,7 +172,7 @@ class CreateTablasSaltTable extends Migration {
 
 
 		Schema::create('compras_insumos',function($tabla){
-			$tabla->increments('id');			
+			$tabla->increments('id');
 			$tabla->integer('insumo_id')->unsigned();
 			$tabla->foreign('insumo_id')->references('id')->on('insumos')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->integer('cantidad_insumo');
@@ -181,7 +184,7 @@ class CreateTablasSaltTable extends Migration {
 
 
 		Schema::create('insumos_proveedores',function($tabla){
-			$tabla->increments('id');			
+			$tabla->increments('id');
 			$tabla->integer('insumos_id')->unsigned();
 			$tabla->foreign('insumos_id')->references('id')->on('insumos')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->timestamps();
@@ -190,32 +193,32 @@ class CreateTablasSaltTable extends Migration {
 
 
 		Schema::create('recetas',function($tabla){
-			$tabla->increments('id');			
+			$tabla->increments('id');
 			$tabla->integer('insumos_id')->unsigned();
 			$tabla->foreign('insumos_id')->references('id')->on('insumos')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->integer('productos_id')->unsigned();
 			$tabla->foreign('productos_id')->references('id')->on('productos')->onDelete('restrict')->onUpdate('restrict');
-			$tabla->double('cantidad');	
+			$tabla->double('cantidad');
 			$tabla->string('descripcion');
 			$tabla->string('nombre');
-			$tabla->timestamps();		
+			$tabla->timestamps();
 		});
 
 
 
 		Schema::create('productos_proveedores',function($tabla){
-			$tabla->increments('id');						
+			$tabla->increments('id');
 			$tabla->integer('producto_id')->unsigned();
 			$tabla->foreign('producto_id')->references('id')->on('productos')->onDelete('restrict')->onUpdate('restrict');
-			$tabla->integer('proveedor_id')->unsigned();		
-			$tabla->foreign('proveedor_id')->references('id')->on('proveedores')->onDelete('restrict')->onUpdate('restrict');	
+			$tabla->integer('proveedor_id')->unsigned();
+			$tabla->foreign('proveedor_id')->references('id')->on('proveedores')->onDelete('restrict')->onUpdate('restrict');
 		});
 
 
 
 
 		Schema::create('compras_productos',function($tabla){
-			$tabla->increments('id');						
+			$tabla->increments('id');
 			$tabla->integer('producto_id')->unsigned();
 			$tabla->foreign('producto_id')->references('id')->on('productos')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->integer('unidad_medida_id')->unsigned();
@@ -227,7 +230,7 @@ class CreateTablasSaltTable extends Migration {
 
 
 		Schema::create('registros_eventos',function($tabla){
-			$tabla->increments('id');						
+			$tabla->increments('id');
 			$tabla->string('tipo_evento');
 			$tabla->integer('usuario_id')->unsigned();
 			$tabla->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
@@ -236,7 +239,7 @@ class CreateTablasSaltTable extends Migration {
 		});
 
 		Schema::create('clientes',function($tabla){
-			$tabla->increments('id');						
+			$tabla->increments('id');
 			$tabla->string('nombres');
 			$tabla->string('apellidos');
 			$tabla->integer('rol_id')->unsigned();
@@ -258,7 +261,7 @@ class CreateTablasSaltTable extends Migration {
 
 
 		Schema::create('ventas',function($tabla){
-			$tabla->increments('id');						
+			$tabla->increments('id');
 			$tabla->double('total');
 			$tabla->double('efectivo');
 			$tabla->double('cambio');
@@ -275,7 +278,7 @@ class CreateTablasSaltTable extends Migration {
 
 
 		Schema::create('ventas_detalles',function($tabla){
-			$tabla->increments('id');						
+			$tabla->increments('id');
 			$tabla->integer('producto_id')->unsigned();
 			$tabla->foreign('producto_id')->references('id')->on('productos')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->integer('venta_id')->unsigned();
@@ -291,7 +294,7 @@ class CreateTablasSaltTable extends Migration {
 
 
 		Schema::create('tipo_tiendas',function($tabla){
-			$tabla->increments('id');						
+			$tabla->increments('id');
 			$tabla->string('tipo_tienda');
 			$tabla->string('detalle');
 			$tabla->timestamps();
@@ -309,23 +312,23 @@ class CreateTablasSaltTable extends Migration {
 	 */
 	public function down()
 	{
-		
+
 		Schema::drop('clientes');
-		Schema::drop('compras_insumos'); 
-		Schema::drop('compras_productos'); 
+		Schema::drop('compras_insumos');
+		Schema::drop('compras_productos');
 		Schema::drop('grupos');
 		Schema::drop('insumos');
 		Schema::drop('insumos_productos');
 		Schema::drop('insumos_proveedors');
 		Schema::drop('inventarios');
 		Schema::drop('productos');
-		Schema::drop('productos_proveedors'); 
-		Schema::drop('proveedores'); 
+		Schema::drop('productos_proveedors');
+		Schema::drop('proveedores');
 		Schema::drop('recetas');
 		Schema::drop('registros_eventos');
 		Schema::drop('roles, sucursales');
-		Schema::drop('unidades_medidas'); 
-		Schema::drop('usuarios'); 
+		Schema::drop('unidades_medidas');
+		Schema::drop('usuarios');
 		Schema::drop('ventas');
 		Schema::drop('ventas_detalles');
 		Schema::drop('tipo_tiendas');
