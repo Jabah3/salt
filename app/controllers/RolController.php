@@ -52,7 +52,47 @@ class RolController extends BaseController {
 
 
 
+	public function postEditarol()
+	{
+		$id=Input::get('id');
+		$rol = Rol::where('id', '=', $id)->get();
+		return $interfaz="<div id='ModalEditaRol' class='reveal-modal' data-reveal>
+  <h2>Edita Rol</h2>
+	<form action='roles/guardarol' method='post' name='FormularioAgregaRol' id='FormularioAgregaRol' >
 
-	
+        <div class='row'>
+          <div class='large-12 columns'>
+            <label>Nombre
+              <input type='text' id='nombre' name='nombre' value='".$id."' placeholder='Escribe el nombre del Rol' required>
+            </label>
+          </div>
+        </div>
+
+        <div class='row'>
+          <div class='large-12 columns'>
+            <label>Descripción
+              <textarea name='descripcion' id='descripcion' placeholder='Escribre una Descripcion del rol'></textarea>
+            </label>
+          </div>
+        </div>
+
+		<div class='row'>
+          <div class='large-4 columns'>
+          </div>
+
+          <div class='large-4 columns'>
+          </div>
+
+          <div class='large-4 columns'>
+         	<input type='submit' value='Guardar' class='button succes expand'>
+          </div>
+        </div>
+    </form>
+    <a class='close-reveal-modal'>&#215;</a>
+</div>
+";
+
+	}
+
 
 }

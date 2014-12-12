@@ -48,7 +48,7 @@
 			<input type="hidden" name="id" id="id" value="{{$rol->id}}" />
 			<td >{{$rol->nombre}}</td>
 			<td>{{$rol->descripcion}}</td>
-			<td> <a href="#" id="eliminar" onclick="eliminarol({{$rol->id}});">E</a> <a href="#" id="">A</a>
+			<td> <a href="#" id="eliminar" onclick="eliminarol({{$rol->id}});">E</a> <a  href="#" onclick="editarol({{$rol->id}});" id="">A</a>
     		</td>
     	</tr>	
 		@endforeach
@@ -116,19 +116,37 @@
 <script type="text/javascript">
 
 		function eliminarol(id){
-			var formData = {
-            'id'              : id
-        	};
+			if(confirm("¿Desea Eliminar el Rol?")){
+				var formData = {'id' : id };
+				$.ajax({
+		            type : "POST",
+		            url  : "roles/eliminarol",
+		            data : formData,
+		            success:function(data, textStatus, jqXHR) 
+			        {
+			            $("#respuesta").text(data);
+			           alert("Se elemino correctamente");
+			        },
+			        error: function(jqXHR, textStatus, errorThrown) 
+			        {
+			            alert("Ocurrio un Error al Eliminar");     
+			        }		        
+				});
+			}
+		}
 
+
+		function editarol(id){
+			var formData = {'id' : id };
 			$.ajax({
 	            type : "POST",
-	            url  : "roles/eliminarol",
+	            url  : "roles/editarol",
 	            data : formData,
 	            success:function(data, textStatus, jqXHR) 
 		        {
-		            $("#respuesta").text(data);
-		            //$('#ModalAgregaRol').foundation('reveal', 'close');
-		           alert("Se elemino correctamente");
+		            $("#respuesta").html(data);
+		           //alert("Se elemino correctamente");
+		           $('#ModalEditaRol').foundation('reveal', 'open');
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
@@ -136,6 +154,8 @@
 		        }		        
 			});
 		}
+
+
 	$(document).ready(function(){
 
 
