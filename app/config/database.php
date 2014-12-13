@@ -51,7 +51,7 @@ return array(
 			'database' => __DIR__.'/../database/production.sqlite',
 			'prefix'   => '',
 		),
-		
+
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
@@ -62,7 +62,6 @@ return array(
 			'collation' => 'utf8_unicode_ci',
 			'prefix'    => '',
 		),
-		/*
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => '192.185.31.33',
