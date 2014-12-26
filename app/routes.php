@@ -22,6 +22,20 @@ Route::get('ejemplo', function()
 	return "Holaaa";
 });
 
+
+
+Route::get('pagina', function()
+{
+	return View::make('pagination.slider');
+});
+
+
+Route::get('pagina2', function()
+{
+	return View::make('enterable');
+});
+
+
 /*Llamamos al controlador Auth*/
 
 Route::get('login','AuthController@showLogin'); // Mostrar login

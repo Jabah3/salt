@@ -9,6 +9,8 @@
     <link rel="stylesheet" href="css/app.css" />
      <link rel="stylesheet" href="css/rev.css" />
     <script src="bower_components/modernizr/modernizr.js"></script>
+
+
   </head>
 
   <body>
@@ -24,13 +26,17 @@
 
 
 
+
+
+
 <input type="submit" data-reveal-id="ModalAgregaRol" class="button" value="Agregar">
 
 
+<section id="cambia">
+	@include('roles.contenido')
+</section>
 
-
-
-
+<!--
 <table>
   <thead>
     <tr>
@@ -40,7 +46,8 @@
     </tr>
   </thead>
 
-  <tbody>
+  <tbody id="contenido_rol" class="">
+
 	@if($roles)
 		
 		@foreach($roles as $rol)
@@ -48,18 +55,37 @@
 			<input type="hidden" name="id" id="id" value="{{$rol->id}}" />
 			<td >{{$rol->nombre}}</td>
 			<td>{{$rol->descripcion}}</td>
-			<td> <a href="#" id="eliminar" onclick="eliminarol({{$rol->id}});">E</a> <a  href="#" onclick="editarol({{$rol->id}});" id="">A</a>
+			<td> <a href="#" id="eliminar" onclick="eliminarol({{$rol->id}});">ELIM</a> <a  href="#" onclick="formatoeditarol({{$rol->id}});" id="">EDIT</a>
     		</td>
     	</tr>	
 		@endforeach
 		
+
+		
+
+
 	@endif
+
+
+
+
   </tbody>
+
+  <tr>
+  	<td colspan="3">
+
+
+  	</td>
+  </tr>
+
 </table>
 
 
+  		@{{ $roles->links() }}-->
+<!--
 <ul class="pagination" role="menubar" aria-label="Pagination">
-  <li class="arrow unavailable" aria-disabled="true"><a href="">&laquo; Previous</a></li>
+  <li class="arrow unavailable" aria-disabled="true"><a href="">&laquo; Anterior</a></li>
+
   <li class="current"><a href="">1</a></li>
   <li><a href="">2</a></li>
   <li><a href="">3</a></li>
@@ -67,18 +93,18 @@
   <li class="unavailable" aria-disabled="true"><a href="">&hellip;</a></li>
   <li><a href="">12</a></li>
   <li><a href="">13</a></li>
-  <li class="arrow"><a href="">Next &raquo;</a></li>
-</ul>
 
-
+  <li class="arrow"><a href="">Siguiente &raquo;</a></li>
+</ul>-->
 
 
 </section>
 
 
 
+<input type="submit" onclick="cambia()"	>
 
-
+<div id="respuesta"></div>
 
 
 <div id="ModalAgregaRol" class="reveal-modal" data-reveal>
@@ -117,8 +143,6 @@
 </div>
 
 
-<aside id="respuesta"></aside>
-
 
 
 
@@ -126,8 +150,12 @@
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/app.js"></script>
 
-
 <script type="text/javascript">
+
+function cambia(){
+	$('#cambia').load('roles/cambia?page=4');
+}
+
 
 		function eliminarol(id){
 			if(confirm("¿Desea Eliminar el Rol?")){
@@ -140,6 +168,7 @@
 			        {
 			            $("#respuesta").text(data);
 			           alert("Se elemino correctamente");
+			           refresh_registros();
 			        },
 			        error: function(jqXHR, textStatus, errorThrown) 
 			        {
@@ -150,17 +179,22 @@
 		}
 
 
-		function editarol(id){
+		function refresh_registros(){
+			$("#contenido_rol").load("roles/refreshrol");
+		}
+
+		function formatoeditarol(id){
 			var formData = {'id' : id };
 			$.ajax({
 	            type : "POST",
-	            url  : "roles/editarol",
+	            url  : "roles/formatoeditarol",
 	            data : formData,
 	            success:function(data, textStatus, jqXHR) 
 		        {
 		            $("#respuesta").html(data);
 		           //alert("Se elemino correctamente");
 		           $('#ModalEditaRol').foundation('reveal', 'open');
+
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
@@ -182,7 +216,8 @@
 		        {
 		            //$("#respuesta").text(data);
 		            $('#ModalAgregaRol').foundation('reveal', 'close');
-		           
+		            refresh_registros();	
+		            $('#FormularioAgregaRol').trigger("reset");	           		           
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
@@ -193,8 +228,39 @@
 	    	//event.unbind(); //unbind. to stop multiple form submit.
 		});	
 
+
+		$('body').on('submit','#FormularioGuardaEdicionRol',function(event) {
+			$.ajax({
+	            type : $(this).attr("method"),
+	            url  : $(this).attr("action"),
+	            data : $(this).serializeArray(),
+	            success:function(data, textStatus, jqXHR) 
+		        {
+		            //$("#respuesta").text(data);
+		            $('#ModalEditaRol').foundation('reveal','close');
+		            refresh_registros();		           
+		        },
+		        error: function(jqXHR, textStatus, errorThrown) 
+		        {
+		            alert("Ocurrio un Error al Guardar");     
+		        }		        
+			});
+			event.preventDefault(); //STOP default action
+	    	//event.unbind(); //unbind. to stop multiple form submit.
+		});	
+
+
 	});
 </script>
+
+
+
+
+
+
+
+
+
 
 
   </body>
