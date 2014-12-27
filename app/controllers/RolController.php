@@ -18,6 +18,11 @@ class RolController extends BaseController {
 	public function getIndex()
 	{
 		$roles = DB::table('roles')->orderBy('created_at', 'desc')->paginate(5);
+
+		    if (Request::ajax()) {
+            	return Response::json(View::make('roles.contenido', array('roles' => $roles))->render());
+        	}
+
 		return View::make('roles.index')->with('roles',$roles);
 	}
 
