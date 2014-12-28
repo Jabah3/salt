@@ -20,138 +20,18 @@
 <section class="row">
 
 
+	<input type="submit" data-reveal-id="ModalAgregaRol" class="button" value="Agregar">
 
 
-
-
-
-
-
-
-
-<input type="submit" data-reveal-id="ModalAgregaRol" class="button" value="Agregar">
-
-
-<section id="contenido">
-	@include('roles.contenido')
-</section>
-
-<!--
-<table>
-  <thead>
-    <tr>
-      <th width="200">Nombre</th>
-      <th width="150">Descripción</th>
-      <th width="150">Acciones</th>
-    </tr>
-  </thead>
-
-  <tbody id="contenido_rol" class="">
-
-	@if($roles)
-		
-		@foreach($roles as $rol)
-		<tr>
-			<input type="hidden" name="id" id="id" value="{{$rol->id}}" />
-			<td >{{$rol->nombre}}</td>
-			<td>{{$rol->descripcion}}</td>
-			<td> <a href="#" id="eliminar" onclick="eliminarol({{$rol->id}});">ELIM</a> <a  href="#" onclick="formatoeditarol({{$rol->id}});" id="">EDIT</a>
-    		</td>
-    	</tr>	
-		@endforeach
-		
-
-		
-
-
-	@endif
-
-
-
-
-  </tbody>
-
-  <tr>
-  	<td colspan="3">
-
-
-  	</td>
-  </tr>
-
-</table>
-
-
-  		@{{ $roles->links() }}-->
-<!--
-<ul class="pagination" role="menubar" aria-label="Pagination">
-  <li class="arrow unavailable" aria-disabled="true"><a href="">&laquo; Anterior</a></li>
-
-  <li class="current"><a href="">1</a></li>
-  <li><a href="">2</a></li>
-  <li><a href="">3</a></li>
-  <li><a href="">4</a></li>
-  <li class="unavailable" aria-disabled="true"><a href="">&hellip;</a></li>
-  <li><a href="">12</a></li>
-  <li><a href="">13</a></li>
-
-  <li class="arrow"><a href="">Siguiente &raquo;</a></li>
-</ul>-->
-
+	<section id="contenido">
+		@include('roles.contenido')
+	</section>
 
 </section>
 
 
-
-<input type="submit" onclick="cambia()"	>
 
 <div id="respuesta"></div>
-
-
-
-
-
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
- <script>
-
-    $(window).on('hashchange', function() {
-        if (window.location.hash) {
-            var page = window.location.hash.replace('#', '');
-            if (page == Number.NaN || page <= 0) {
-                return false;
-            } else {
-                getPosts(page);
-            }
-        }
-    });
-
-    $(document).ready(function() {
-        $(document).on('click', '.pagination a', function (e) {
-            getPosts($(this).attr('href').split('page=')[1]);
-            e.preventDefault();
-        });
-    });
-
-    function getPosts(page) {
-        $.ajax({
-            url : '?page=' + page,
-            dataType: 'json',
-        }).done(function (data) {
-            $('#contenido').html(data);
-            location.hash = page;
-        }).fail(function () {
-            alert('Posts could not be loaded.');
-        });
-    }
-
-    </script>
-
-
-
-
-
-
-
-
 
 
 
@@ -201,16 +81,68 @@
 
 
 
+
+
+
+
+
+
+
+
+<!-- Paginacion con Ajax -->
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+ <script>
+
+    $(window).on('hashchange', function() {
+        if (window.location.hash) {
+            var page = window.location.hash.replace('#', '');
+            if (page == Number.NaN || page <= 0) {
+                return false;
+            } else {
+                getPosts(page);
+            }
+        }
+    });
+
+    $(document).ready(function() {
+        $(document).on('click', '.pagination a', function (e) {
+            getPosts($(this).attr('href').split('page=')[1]);
+            e.preventDefault();
+        });
+    });
+
+    function getPosts(page) {
+        $.ajax({
+            url : '?page=' + page,
+            dataType: 'json',
+        }).done(function (data) {
+            $('#contenido').html(data);
+            location.hash = page;
+        }).fail(function () {
+            alert('Posts could not be loaded.');
+        });
+    }
+    </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/app.js"></script>
 
 <script type="text/javascript">
-
-function cambia(){
-	$('#cambia').load('roles/cambia?page=4');
-}
-
 
 		function eliminarol(id){
 			if(confirm("¿Desea Eliminar el Rol?")){
@@ -223,7 +155,9 @@ function cambia(){
 			        {
 			            $("#respuesta").text(data);
 			           alert("Se elemino correctamente");
-			           refresh_registros();
+
+			           var pagina_Actual=obtiene_activo();
+		            	getPosts(pagina_Actual);
 			        },
 			        error: function(jqXHR, textStatus, errorThrown) 
 			        {
@@ -238,7 +172,19 @@ function cambia(){
 			$("#contenido_rol").load("roles/refreshrol");
 		}
 
+
+
+		function obtiene_activo(){			
+			//valor=$('.active a').html();
+			valor=$('.pagination .active').val();
+			//console.log("Valor= "+valor);			
+			return valor;
+		}
+
+
+
 		function formatoeditarol(id){
+			obtiene_activo();
 			var formData = {'id' : id };
 			$.ajax({
 	            type : "POST",
@@ -259,6 +205,12 @@ function cambia(){
 		}
 
 
+
+
+
+
+
+
 	$(document).ready(function(){
 
 
@@ -270,9 +222,12 @@ function cambia(){
 	            success:function(data, textStatus, jqXHR) 
 		        {
 		            //$("#respuesta").text(data);
-		            $('#ModalAgregaRol').foundation('reveal', 'close');
-		            refresh_registros();	
-		            $('#FormularioAgregaRol').trigger("reset");	           		           
+		            //refresh_registros();	
+		            $('#ModalAgregaRol').foundation('reveal', 'close');		            		            
+		            $('#FormularioAgregaRol').trigger("reset");	 
+		            var pagina_Actual=obtiene_activo();
+		            getPosts(pagina_Actual);    		           
+
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {
@@ -293,7 +248,9 @@ function cambia(){
 		        {
 		            //$("#respuesta").text(data);
 		            $('#ModalEditaRol').foundation('reveal','close');
-		            refresh_registros();		           
+		            //refresh_registros();	
+		            var pagina_Actual=obtiene_activo();
+		            getPosts(pagina_Actual);	           
 		        },
 		        error: function(jqXHR, textStatus, errorThrown) 
 		        {

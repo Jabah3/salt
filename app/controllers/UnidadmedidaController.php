@@ -1,6 +1,6 @@
 <?php
 
-class RolController extends BaseController {
+class UnidadmedidaController extends BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -17,31 +17,36 @@ class RolController extends BaseController {
 
 	public function getIndex()
 	{
-		$roles = DB::table('roles')->orderBy('created_at', 'desc')->paginate(5);
+		$unidadmedida = DB::table('unidad_medidas')->orderBy('created_at', 'desc')->paginate(5);
 
 		    if (Request::ajax()) {
-            	return Response::json(View::make('roles.contenido', array('roles' => $roles))->render());
+            	return Response::json(View::make('unidadmedidas.contenido', array('unidadmedida' => $unidadmedida))->render());
         	}
 
-		return View::make('roles.index')->with('roles',$roles);
+		return View::make('unidadmedidas.index')->with('unidadmedida',$unidadmedida);
 	}
 
 
-	public function postGuardarol()
+
+
+
+	public function postGuardaunidadmedida()
 	{
-		$Rol = new Rol; 
-		$Rol->nombre=$nombre=Input::get('nombre');
-		$Rol->descripcion=$descripcion=Input::get('descripcion');
-		$Rol->save();
+		$Unidadmedida = new Unidadmedida; 
+		$Unidadmedida->tipo_unidad=$tipo_unidad=Input::get('tipo_unidad');
+		$Unidadmedida->unidad_medida=$unidad_medida=Input::get('unidad_medida');
+		$Unidadmedida->descripcion=$descripcion=Input::get('descripcion');
+		$Unidadmedida->save();
 
-		return $nombre;
+		return $tipo_unidad;
 	}
+
+
 
 
 
 	public function postGuardaedicionrol()
 	{
-		//$Rol = new Rol; 
 		Rol::where('id', '=', Input::get('id'))->update
 		(
 			array
@@ -67,7 +72,6 @@ class RolController extends BaseController {
 	        
 	    $eliminarol->delete();
 	}
-
 
 
 
@@ -118,22 +122,6 @@ class RolController extends BaseController {
 	}
 
 
-	public function getPaginacion()
-	{	
-		//return $someUsers = Rol::where('id', '>', 1)->simplePaginate(6);
-		//return View::make('photos.show', array('photos' => $photos));
-  /** 	$per_page=5;
-	$Rol = DB::table('roles')->paginate($per_page, array('id', 'nombre', 'created_at'));
-
-	$paginacion=1;
-		foreach ($Rol as $order){
-		    //echo $order->id." "; 
-		    echo $paginacion++." ";
-		}
-
-	echo $total = DB::table('roles')->count();
-	echo "habra ".$steps=$total/$per_page;*/		
-	}
 
 
 

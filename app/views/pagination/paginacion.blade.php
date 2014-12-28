@@ -22,7 +22,7 @@ $traduccion = $environment->getTranslator();?>
 
 
   @for ($i = 1; $i <= $paginator->getLastPage(); $i++)
-  <li class="item{{ ($paginator->getCurrentPage() == $i) ? ' active current' : '' }}">
+  <li class="item{{ ($paginator->getCurrentPage() == $i) ? ' active current' : '' }}" value="{{ $i }}">
     <a href="{{ $paginator->getUrl($i) }}"
       >
         {{ $i }}
