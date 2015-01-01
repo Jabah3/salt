@@ -1,3 +1,4 @@
+<?php $uri = Request::path(); ?> 
 <table>
   <thead>
     <tr>
@@ -16,7 +17,7 @@
 			<td >{{$um->tipo_unidad}}</td>
 			<td>{{$um->unidad_medida}}</td>
       <td>{{$um->descripcion}}</td>
-			<td> <a href="#" id="eliminar" onclick="eliminarol({{$um->id}});">ELIM</a> <a  href="#" onclick="formatoeditarol({{$um->id}});" id="">EDIT</a>
+			<td> <a href="#" id="eliminar" onclick="elimina({{$um->id}},'{{$uri}}');">ELIM</a> <a  href="#" onclick="formatoedita({{$um->id}},'{{$uri}}');" id="">EDIT</a>
     		</td>
     	</tr>	
 		@endforeach
@@ -32,4 +33,4 @@
 
 </table>
 
-  		{{ $unidadmedida->links() }}
+  	{{ $unidadmedida->links() }}

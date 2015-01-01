@@ -30,7 +30,7 @@ class UnidadmedidaController extends BaseController {
 
 
 
-	public function postGuardaunidadmedida()
+	public function postGuarda()
 	{
 		$Unidadmedida = new Unidadmedida; 
 		$Unidadmedida->tipo_unidad=$tipo_unidad=Input::get('tipo_unidad');
@@ -45,14 +45,16 @@ class UnidadmedidaController extends BaseController {
 
 
 
-	public function postGuardaedicionrol()
+	public function postGuardaedicion()
 	{
-		Rol::where('id', '=', Input::get('id'))->update
+		Unidadmedida::where('id', '=', Input::get('id'))->update
 		(
 			array
 			(
-				'nombre'=>Input::get('nombre'),				
+				'tipo_unidad'=>Input::get('tipo'),				
+				'unidad_medida'=>Input::get('medida'),
 				'descripcion'=>Input::get('descripcion')
+
 			)
 		);
 	}
@@ -60,10 +62,10 @@ class UnidadmedidaController extends BaseController {
 
 
 
-	public function postEliminarol()
+	public function postElimina()
 	{
 		$id=Input::get('id');
-	 	$eliminarol = Rol::find($id);
+	 	$eliminarol = Unidadmedida::find($id);
 	        
 	    if (is_null ($eliminarol))
 	    {
@@ -75,21 +77,30 @@ class UnidadmedidaController extends BaseController {
 
 
 
-	public function postFormatoeditarol()
+	public function postFormatoedita()
 	{
 		$id=Input::get('id');
-		$rol = Rol::where('id', '=', $id)->get();
+		$uri=Input::get('uri');
+		$rol = Unidadmedida::where('id', '=', $id)->get();
 
 		foreach ($rol as $value) {
 
-			return $interfaz="<div id='ModalEditaRol' class='reveal-modal' data-reveal>
+			return $interfaz="<div id='ModalEdita' class='reveal-modal' data-reveal>
 							  <h2>Edita Rol</h2>
-								<form action='roles/guardaedicionrol' method='post' name='FormularioGuardaEdicionRol' id='FormularioGuardaEdicionRol' >
+								<form action='$uri/guardaedicion' method='post' name='FormularioGuardaEdicion' id='FormularioGuardaEdicion' >
 								<input type='hidden' name='id' id='id' value='".$value->id."'/>
 							        <div class='row'>
 							          <div class='large-12 columns'>
 							            <label>Nombre
-							              <input type='text' id='nombre' name='nombre' value='".$value->nombre."' placeholder='Escribe el nombre del Rol' required>
+							              <input type='text' id='tipo' name='tipo' value='".$value->tipo_unidad."' placeholder='Escribe el nombre del Rol' required>
+							            </label>
+							          </div>
+							        </div>
+
+							        <div class='row'>
+							          <div class='large-12 columns'>
+							            <label>Descripción
+							              <textarea name='medida' id='medida' placeholder='Escribre una Descripcion del rol'>".$value->unidad_medida."</textarea>
 							            </label>
 							          </div>
 							        </div>
@@ -101,6 +112,8 @@ class UnidadmedidaController extends BaseController {
 							            </label>
 							          </div>
 							        </div>
+
+
 
 									<div class='row'>
 							          <div class='large-4 columns'>

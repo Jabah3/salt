@@ -18,7 +18,7 @@ class CreateTablasSaltTable extends Migration {
 			$tabla->increments('id');
 			$tabla->string('tipo_unidad');
 			$tabla->double('unidad_medida');
-			$tabla->integer('descripcion');
+			$tabla->string('descripcion');
 			$tabla->timestamps();
 		});
 
