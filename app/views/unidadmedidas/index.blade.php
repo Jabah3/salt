@@ -34,58 +34,8 @@
 
 
 
-
-
-
-
-
-
-
-<div id="ModalAgrega" class="reveal-modal" data-reveal>
-  <h2>Agregar Unidad Medida</h2>
-	<form action="unidad_medida/guarda" method="post" name="FormularioAgrega" id="FormularioAgrega" >
-
-        <div class="row">
-          <div class="large-12 columns">
-            <label>Tipo Unidad
-              <input type="text" id="tipo_unidad" name="tipo_unidad" placeholder="Escribe Tipo Unidad" required />
-            </label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="large-12 columns">
-            <label>Unidad Medida
-              <input type="text" name="unidad_medida" id="unidad_medida" placeholder="Escribre Unidad de medida" required />
-            </label>
-          </div>
-        </div>
-
-        <div class="row">
-          <div class="large-12 columns">
-            <label>Descripción
-              <textarea name="descripcion" id="descripcion" placeholder="Escribre una Descripcion del rol"></textarea>
-            </label>
-          </div>
-        </div>
-
-		<div class="row">
-          <div class="large-4 columns">
-          </div>
-
-          <div class="large-4 columns">
-          </div>
-
-          <div class="large-4 columns">
-         	<input type="submit" value="Guardar" class="button succes expand">
-          </div>
-        </div>
-    </form>
-    <a class="close-reveal-modal">&#215;</a>
-</div>
-
-
-
+<?php $uri = Request::path(); ?> 
+@include('unidadmedidas.agregaformato')
 
 
 
@@ -98,53 +48,6 @@
 
 <!-- Paginacion con Ajax -->
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
- <script>
-
-    $(window).on('hashchange', function() {
-        if (window.location.hash) {
-            var page = window.location.hash.replace('#', '');
-            if (page == Number.NaN || page <= 0) {
-                return false;
-            } else {
-                getPosts(page);
-            }
-        }
-    });
-
-    $(document).ready(function() {
-        $(document).on('click', '.pagination a', function (e) {
-            getPosts($(this).attr('href').split('page=')[1]);
-            e.preventDefault();
-        });
-    });
-
-    function getPosts(page) {
-        $.ajax({
-            url : '?page=' + page,
-            dataType: 'json',
-        }).done(function (data) {
-            $('#contenido').html(data);
-            location.hash = page;
-        }).fail(function () {
-            alert('Posts could not be loaded.');
-        });
-    }
-    </script>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     <script src="bower_components/jquery/dist/jquery.min.js"></script>
     <script src="bower_components/foundation/js/foundation.min.js"></script>
     <script src="js/app.js"></script>

@@ -50,6 +50,7 @@ Route::group(['before' => 'auth'], function()
 
 Route::controller('roles','RolController');
 Route::controller('unidad_medida','UnidadmedidaController');
+Route::controller('usuarios','UsuarioController');
 Route::controller('clientes','ClienteController');
 Route::controller('grupos','GrupoController');
 Route::controller('insumos','InsumoController');
@@ -58,4 +59,4 @@ Route::controller('productos','ProductoController');
 Route::controller('proveedores','ProveedorController');
 Route::controller('recetas','RecetaController');
 Route::controller('ventas','VentaController');
-
+Route::controller('sucursales','SucursalController');

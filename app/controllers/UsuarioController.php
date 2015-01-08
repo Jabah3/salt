@@ -1,6 +1,6 @@
 <?php
 
-class RolController extends BaseController {
+class UsuarioController extends BaseController {
 
 	/*
 	|--------------------------------------------------------------------------
@@ -17,24 +17,35 @@ class RolController extends BaseController {
 	public function getIndex()
 	{
 		//$roles = DB::table('roles')->orderBy('created_at', 'desc')->paginate(5);
-		$roles= Rol::orderBy('created_at', 'desc')->paginate(5);
+		$usuarios= Usuario::orderBy('created_at', 'desc')->paginate(5);
 
 		    if (Request::ajax()) {
-            	return Response::json(View::make('roles.contenido', array('roles' => $roles))->render());
+            	return Response::json(View::make('usuarios.contenido', array('usuarios' => $usuarios))->render());
         	}
 
-		return View::make('roles.index')->with('roles',$roles);
+		return View::make('usuarios.index')->with('usuarios',$usuarios);
 	}
 
 
 	public function postGuarda()
 	{
-		$Rol = new Rol; 
-		$Rol->nombre=$nombre=Input::get('nombre');
-		$Rol->descripcion=$descripcion=Input::get('descripcion');
+		$Rol = new Usuario; 
+		$Rol->nombres=$nombres=Input::get('nombres');
+	    $Rol->apellidos=$apellidos=Input::get('apellidos');
+	    $Rol->rol_id=$rol_id=Input::get('rol_id');
+	    $Rol->sucursal_id=$sucursal_id=Input::get('sucursal_id');
+	    $Rol->telefono=$telefono=Input::get('telefono');
+	    $Rol->email=$email=Input::get('email');
+	    $Rol->grupos_id=$grupos_id=Input::get('grupos_id');
+	    $Rol->ciudad=$ciudad=Input::get('ciudad');
+	    $Rol->estado=$estado=Input::get('estado');
+	    $Rol->activo=$activo=Input::get('activo');
+	    $Rol->sexo=$sexo=Input::get('sexo');
+	    $Rol->foto=$foto=Input::get('foto');
+	    $Rol->descripcion=$descripcion=Input::get('descripcion');
 		$Rol->save();
 
-		return $nombre;
+		return $nombres;
 	}
 
 
@@ -76,7 +87,7 @@ class RolController extends BaseController {
 		$id=Input::get('id');
 		$rol = Rol::where('id', '=', $id)->get();
 		$uri=Input::get('uri');
-		return View::make('roles.editaformato')->with('rol',$rol)->with('uri',$uri);
+		return View::make('usuarios.editaformato')->with('rol',$rol)->with('uri',$uri);
 	}
 
 

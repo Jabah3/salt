@@ -1,3 +1,4 @@
+<?php $uri = Request::path(); ?> 
 <table>
   <thead>
     <tr>
@@ -14,7 +15,7 @@
 			<input type="hidden" name="id" id="id" value="{{$rol->id}}" />
 			<td >{{$rol->nombre}}</td>
 			<td>{{$rol->descripcion}}</td>
-			<td> <a href="#" id="eliminar" onclick="eliminarol({{$rol->id}});">ELIM</a> <a  href="#" onclick="formatoeditarol({{$rol->id}});" id="">EDIT</a>
+			<td> <a href="#" id="eliminar" onclick="elimina({{$rol->id}},'{{$uri}}');">ELIM</a> <a  href="#" onclick="formatoedita({{$rol->id}},'{{$uri}}');" id="">EDIT</a>
     		</td>
     	</tr>	
 		@endforeach
