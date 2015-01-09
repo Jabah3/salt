@@ -6,10 +6,29 @@
   <h2>Agregar Usuario</h2>
   <form action="{{$uri}}/guarda" method="post" name="FormularioAgrega" id="FormularioAgrega" >
 
+
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Usuario
+              <input type="text" id="usuario" name="usuario" placeholder="Escriba su usuario" required />
+            </label>
+          </div>
+        </div>
+
+
+
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Contraseña
+              <input type="password" id="contrasena" name="contrasena" placeholder="Escriba su contraseña" required />
+            </label>
+          </div>
+        </div>
+
         <div class="row">
           <div class="large-12 columns">
             <label>Nombre
-              <input type="text" id="nombres" name="nombres" placeholder="Escribe Tipo Unidad" required />
+              <input type="text" id="nombre" name="nombre" placeholder="Escribe Tipo Unidad" required />
             </label>
           </div>
         </div>
@@ -17,7 +36,7 @@
         <div class="row">
           <div class="large-12 columns">
             <label>Apellidos
-              <input type="text" id="apellidos" name="apellidos" placeholder="Escribe Tipo Unidad" required />
+              <input type="text" id="apellido" name="apellido" placeholder="Escribe Tipo Unidad" required />
             </label>
           </div>
         </div>
@@ -39,7 +58,6 @@
             </label>
           </div>
         </div>
-
 
         <div class="row">
           <div class="large-12 columns">
@@ -69,13 +87,20 @@
         <div class="row">
           <div class="large-12 columns">
             <label>Grupo
-              <input type="text" id="grupos_id" name="grupos_id" placeholder="Escribe Tipo Unidad" required />
+              <input type="text" id="grupo_id" name="grupo_id" placeholder="Escribe Tipo Unidad" required />
             </label>
           </div>
         </div>
 
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Estado
+              <input type="text" id="estado" name="estado" placeholder="Escribe Tipo estado" required />
+            </label>
+          </div>
+        </div>
 
-
+<!--
         <div class="row">
           <div class="large-12 columns">
             <label>calle
@@ -129,6 +154,23 @@
             </label>
           </div>
         </div>
+-->
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Sexo
+              <input type="text" id="sexo" name="sexo" placeholder="Escribe Tipo Sexo" required />
+            </label>
+          </div>
+        </div>
+
+
+        <div class="row">
+          <div class="large-12 columns">
+            <label>Foto
+              <textarea name="foto" id="foto" placeholder="Escribre una Descripcion del rol"></textarea>
+            </label>
+          </div>
+        </div>
 
 
         <div class="row">
@@ -154,6 +196,3 @@
     </form>
     <a class="close-reveal-modal">&#215;</a>
 </div>
-
-
-

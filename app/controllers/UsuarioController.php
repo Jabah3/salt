@@ -29,23 +29,47 @@ class UsuarioController extends BaseController {
 
 	public function postGuarda()
 	{
-		$Rol = new Usuario; 
-		$Rol->nombres=$nombres=Input::get('nombres');
-	    $Rol->apellidos=$apellidos=Input::get('apellidos');
-	    $Rol->rol_id=$rol_id=Input::get('rol_id');
-	    $Rol->sucursal_id=$sucursal_id=Input::get('sucursal_id');
-	    $Rol->telefono=$telefono=Input::get('telefono');
-	    $Rol->email=$email=Input::get('email');
-	    $Rol->grupos_id=$grupos_id=Input::get('grupos_id');
-	    $Rol->ciudad=$ciudad=Input::get('ciudad');
-	    $Rol->estado=$estado=Input::get('estado');
-	    $Rol->activo=$activo=Input::get('activo');
-	    $Rol->sexo=$sexo=Input::get('sexo');
-	    $Rol->foto=$foto=Input::get('foto');
-	    $Rol->descripcion=$descripcion=Input::get('descripcion');
-		$Rol->save();
+		$Usuarios = new Usuario; 
+		$Usuarios->usuario=$usuario=Input::get('usuario');
+		//$Usuarios->contrasena=$contrasena=Input::get('contrasena');
+		$Usuarios->contrasena=Hash::make(Input::get('contrasena'));
+		$Usuarios->nombre=$nombres=Input::get('nombre');
+	    $Usuarios->apellido=$apellidos=Input::get('apellido');
+	    $Usuarios->rol_id=$rol_id=Input::get('rol_id');
+	    $Usuarios->sucursal_id=$sucursal_id=Input::get('sucursal_id');
+	    $Usuarios->telefono=$telefono=Input::get('telefono');
+	    $Usuarios->email=$email=Input::get('email');
+	    $Usuarios->grupo_id=$grupos_id=Input::get('grupo_id');
+	    $Usuarios->ciudad=$ciudad=Input::get('ciudad');
+	    $Usuarios->estado=$estado=Input::get('estado');
+	    $Usuarios->activo=1;
+	    $Usuarios->sexo=$sexo=Input::get('sexo');
+	    $Usuarios->foto=$foto=Input::get('foto');
+	    $Usuarios->descripcion=$descripcion=Input::get('descripcion');
+		$Usuarios->save();
 
 		return $nombres;
+/*
+
+		echo "<br>". Input::get('usuario');
+		echo "<br>". Input::get('contrasena');
+		//$reg->password=Hash::make(Input::get('password'));
+		echo "<br>". Input::get('nombre');
+	    echo "<br>". Input::get('apellido');
+	    echo "<br>". Input::get('rol_id');
+	    echo "<br>". Input::get('sucursal_id');
+	    echo "<br>". Input::get('telefono');
+	    echo "<br>". Input::get('email');
+	    echo "<br>". Input::get('grupo_id');
+	    echo "<br>". Input::get('ciudad');
+	    echo "<br>". Input::get('estado');
+	    echo "<br>". Input::get('activo');
+	    echo "<br>". Input::get('sexo');
+	    echo "<br>". Input::get('foto');
+	    echo "<br>". Input::get('descripcion');
+
+*/
+
 	}
 
 

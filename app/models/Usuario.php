@@ -23,7 +23,7 @@ class Usuario extends Eloquent implements UserInterface, RemindableInterface {
 	 *
 	 * @var array
 	 */
-
+/*
 	public function registroEvento()
 	{
 		return $this->hasMany('Registroevento', 'usuario_id');
@@ -49,6 +49,6 @@ class Usuario extends Eloquent implements UserInterface, RemindableInterface {
 	public function rol()
 	{
 		return $this->belongsTo('Rol');
-	}
+	}*/
 
 }

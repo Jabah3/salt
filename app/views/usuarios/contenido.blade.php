@@ -1,4 +1,4 @@
-<?php $uri = Request::path(); ?> 
+<?php $uri = Request::path(); $ur=Request::url(); ?> 
 <table>
   <thead>
     <tr>
@@ -24,18 +24,18 @@
     @foreach($usuarios as $usuario)
     <tr>
       <input type="hidden" name="id" id="id" value="{{$usuario->id}}" />
-      <td >{{$usuario->nombres}}</td>
-      <td >{{$usuario->apellidos}}</td>
+      <td >{{$usuario->nombre}}</td>
+      <td >{{$usuario->apellido}}</td>
       <td >{{$usuario->rol_id}}</td>
       <td >{{$usuario->sucursal_id}}</td>
       <td >{{$usuario->telefono}}</td>
       <td >{{$usuario->email}}</td>
-      <td >{{$usuario->grupos_id}}</td>
+      <td >{{$usuario->grupo_id}}</td>
       <td >{{$usuario->ciudad}}</td>
       <td >{{$usuario->estado}}</td>
       <td >{{$usuario->activo}}</td>
       <td >{{$usuario->sexo}}</td>
-      <td >{{$usuario->foto}}</td>
+      <td ><img src="{{ 'imagenes/'.$usuario->foto }}"></td>
       <td >{{$usuario->descripcion}}</td>
 
 
