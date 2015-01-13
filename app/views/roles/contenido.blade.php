@@ -1,34 +1,36 @@
 <?php $uri = Request::path(); ?> 
-<table>
+
+
+<table style="width:100%;">
   <thead>
     <tr>
-      <th width="200">Nombre</th>
-      <th width="150">Descripción</th>
-      <th width="150">Acciones</th>
+      <th>Nombre</th>
+      <th>Descripción</th>
+      <th width="200">Acciones</th>
     </tr>
   </thead>
 
-  <tbody id="contenido_rol" class="">
+  <tbody id="contenido_rol">
 	@if($roles)		
 		@foreach($roles as $rol)
 		<tr>
 			<input type="hidden" name="id" id="id" value="{{$rol->id}}" />
 			<td >{{$rol->nombre}}</td>
 			<td>{{$rol->descripcion}}</td>
-			<td> <a href="#" id="eliminar" onclick="elimina({{$rol->id}},'{{$uri}}');">ELIM</a> <a  href="#" onclick="formatoedita({{$rol->id}},'{{$uri}}');" id="">EDIT</a>
+			<td> 
+        <ul class="button-group">
+          <li>
+            <a href="#" id="eliminar" class="button tiny" onclick="elimina({{$rol->id}},'{{$uri}}');"><i class="icon ion-close"></i> Eliminar</a>
+          </li>
+          <li>
+            <a href="#" class="button tiny" onclick="formatoedita({{$rol->id}},'{{$uri}}');" id=""><i class="icon ion-edit"></i> Editar</a>
+          </li>
+        </ul>
     		</td>
     	</tr>	
 		@endforeach
 	@endif
   </tbody>
-
-  <tr>
-  	<td colspan="3">
-
-
-  	</td>
-  </tr>
-
 </table>
 
   		{{ $roles->links() }}

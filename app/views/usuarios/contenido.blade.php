@@ -2,20 +2,14 @@
 <table>
   <thead>
     <tr>
-      <th width="200">Nombre</th>
-      <th width="150">apellidos</th>
-      <th width="150">rol_id</th>
-      <th width="150">sucursal_id</th>
-      <th width="150">telefono</th>
-      <th width="150">email</th>
-      <th width="150">grupos_id</th>
-      <th width="150">ciudad</th>
-      <th width="150">estado</th>
-      <th width="150">activo</th>
-      <th width="150">sexo</th>
-      <th width="150">foto</th>
-      <th width="150">Descripción</th>
-      <th width="150">Acciones</th>
+      <th>Nombre</th>
+      <th>apellidos</th>
+      <th>rol</th>
+      <th>sucursal</th>
+      <th>grupo</th>
+      <th>Estado</th>
+      <th>Descripción</th>
+      <th width="200">Acciones</th>
     </tr>
   </thead>
 
@@ -26,23 +20,28 @@
       <input type="hidden" name="id" id="id" value="{{$usuario->id}}" />
       <td >{{$usuario->nombre}}</td>
       <td >{{$usuario->apellido}}</td>
-      <td >{{$usuario->rol_id}}</td>
-      <td >{{$usuario->sucursal_id}}</td>
-      <td >{{$usuario->telefono}}</td>
-      <td >{{$usuario->email}}</td>
-      <td >{{$usuario->grupo_id}}</td>
-      <td >{{$usuario->ciudad}}</td>
-      <td >{{$usuario->estado}}</td>
-      <td >{{$usuario->activo}}</td>
-      <td >{{$usuario->sexo}}</td>
-      <td ><img src="{{ 'imagenes/'.$usuario->foto }}"></td>
+      <td >{{$usuario->rol->nombre}}</td>
+      <td >{{$usuario->sucursal->nombre}}</td>
+      <td >{{$usuario->grupo->nombre}}</td>
+      <td >
+        @if($usuario->activo)
+          Activo
+        @else
+          Inactivo
+        @endif      
+      </td>
       <td >{{$usuario->descripcion}}</td>
-
-
-
-      <td> <a href="#" id="eliminar" onclick="elimina({{$usuario->id}},'{{$uri}}');">ELIM</a> <a  href="#" onclick="formatoedita({{$usuario->id}},'{{$uri}}');" id="">EDIT</a>
-        </td>
-      </tr> 
+      <td> 
+        <ul class="button-group">
+          <li>
+            <a href="#" class="button tiny secondary" onclick="formatoedita({{$usuario->id}},'{{$uri}}');" id=""><i class="icon ion-edit"></i> Editar</a>
+          </li>
+          <li>
+            <a href="#" id="eliminar" class="button tiny alert" onclick="elimina({{$usuario->id}},'{{$uri}}');"><i class="icon ion-close"></i> Eliminar</a>
+          </li>
+        </ul>
+      </td>
+    </tr> 
     @endforeach
   @endif
   </tbody>
@@ -57,3 +56,4 @@
 </table>
 
     {{ $usuarios->links() }}
+
