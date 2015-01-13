@@ -60,3 +60,4 @@ Route::controller('proveedores','ProveedorController');
 Route::controller('recetas','RecetaController');
 Route::controller('ventas','VentaController');
 Route::controller('sucursales','SucursalController');
+Route::controller('punto_venta','PuntoventaController');
