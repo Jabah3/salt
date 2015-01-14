@@ -1,26 +1,11 @@
-<!doctype html>
-<html class="no-js" lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sistema de administracion de comercios en la nube</title>
-    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link href="css/ionicons.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="css/app.css" />
-     <link rel="stylesheet" href="css/rev.css" />
-    <script src="bower_components/modernizr/modernizr.js"></script>
+    
+@extends('layoutPuntoVenta')
 
-  </head>
-
-  <body>
-
+@section('content')
 
 		<section class="row">
 
 
-
-
-	Codigo del Producto: <input type="search" name="codigo" id="codigo" placeholder="Introduzca el codigo" autofocus/>
 
 
 
@@ -55,17 +40,46 @@
 
 
 
+<script type="text/javascript">
+	$("#codigo").focus();
+
+
+  //comprobamos si se pulsa una tecla
+        $("#codigo").keyup(function(e){
+                                     
+              //obtenemos el texto introducido en el campo de búsqueda
+              consulta = $("#codigo").val();
+                                                                           
+              //hace la búsqueda
+                                                                                  
+              $.ajax({
+                    type: "POST",
+                    url: "punto_venta/busqueda",
+                    data: "b="+consulta,
+                    dataType: "html",
+                    beforeSend: function(){
+                          //imagen de carga
+                          $("#display").html("<p align='center'><img src='ajax-loader.gif' /></p>");
+                    },
+                    error: function(){
+                          alert("error petición ajax");
+                    },
+                    success: function(data){                                                    
+                          $("#display").empty();
+                          //$("#display").append(data);
+                          //$("#codigo").append(data);
+                          //$("#display").prepend(data);      
+                          $("#display").after(data);                                                      
+                    }
+              });
+                                                                                  
+                                                                           
+        });
+
+</script>
 
 
 
 
 
-
-
-
-
-
-
-
-  </body>
-</html>
+@stop

@@ -27,8 +27,6 @@ class PuntoventaController extends BaseController {
             ->get();
 
 /*
-
-
 $ingresos = DB::table('deposits AS D')
 	->leftJoin('incomes AS I', 'I.id', '=', 'D.income_id')
 	->leftJoin('branches AS B', 'B.num_branch', '=', 'I.id_branch')
@@ -39,5 +37,27 @@ $ingresos = DB::table('deposits AS D')
 */
 		return View::make('puntoventa.index')->with('productos',$productos);
 	}
+
+
+
+
+	public function postBusqueda(){
+
+		$b=Input::get('b');
+
+        $productos = Producto::where('nombre', 'LIKE',"%$b%")->orWhere('codigo_barra', 'LIKE', "%$b%")->get();
+
+		return View::make('puntoventa.busqueda')->with('productos',$productos);
+		   /* foreach($productos as $prod){
+		   	 echo   '<div class="large-4 columns"> 
+		          		<div class="title">'.$prod->nombre.'</div>     		          
+		     		</div>';
+    		}*/
+	}
+
+
+
+
+
 
 }

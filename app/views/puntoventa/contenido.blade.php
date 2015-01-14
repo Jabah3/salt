@@ -6,15 +6,7 @@
 
 
 <style>
-  /* Demo Styles */
-  /*
-  body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 13px;
-    line-height: 1.5;
-  }
-*/
+/*
   .swiper-container {
     width: 880px;
     height: 220px;
@@ -36,20 +28,6 @@
   .pink-slide {
     background: #973e76;
   }
-  /*
-  .swiper-slide .title {
-    font-style: italic;
-    font-size: 42px;
-    margin-top: 80px;
-    margin-bottom: 0;
-    line-height: 45px;
-  }*/
-  /*
-  .swiper-slide img{
-    cursor: pointer;
-  }*/
-
-
   .pagination {
     position: absolute;
     z-index: 20;
@@ -73,93 +51,192 @@
   .swiper-active-switch {
     background: #fff;
   }
-
-
-
-/*
-.device {
-  width: 640px;
-  height: 300px;
-  padding: 30px 40px;
-  border-radius: 20px;
-  background: #111;
-  border: 3px solid white;
-  margin: 5px auto;
-  position: relative;
-  box-shadow: 0px 0px 5px #000;
-}
-.device .arrow-left {
-  background: url(img/arrows.png) no-repeat left top;
-  position: absolute;
-  left: 10px;
-  top: 50%;
-  margin-top: -15px;
-  width: 17px;
-  height: 30px;
-}
-.device .arrow-right {
-  background: url(img/arrows.png) no-repeat left bottom;
-  position: absolute;
-  right: 10px;
-  top: 50%;
-  margin-top: -15px;
-  width: 17px;
-  height: 30px;
-}
 */
-
 </style>
 
 
-<!--
-<table>
+
+  <style>/* Demo Styles */
+.swiper-container {
+  width: 220px;
+  height: 220px;
+  color: #fff;
+  text-align: center;
+}
+.red-slide {
+  background: #ca4040;
+}
+.blue-slide {
+  background: #4390ee;
+}
+.orange-slide {
+  background: #ff8604;
+}
+.green-slide {
+  background: #49a430;
+}
+.pink-slide {
+  background: #973e76;
+}
+
+.swiper-slide .title {
+  font-style: italic;
+  /*font-size: 42px;*/
+  /*margin-top: 80px;*/
+  margin-bottom: 0;
+  line-height: 45px;
+}
+
+.swiper-slide p {
+  font-style: italic;
+  font-size: 25px;
+}
+.pagination {
+  position: absolute;
+  z-index: 20;
+  left: 10px;
+  top: 10px;
+}
+.swiper-pagination-switch {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 8px;
+  background: #555;
+  margin: 0 0px 5px;
+  opacity: 0.8;
+  border: 1px solid #fff;
+  cursor: pointer;
+}
+.swiper-active-switch {
+  background: #fff;
+}
+
+
+#display{
+  width:250px;
+  margin-right:30px;
+  border-left:solid 1px #dedede;
+  border-right:solid 1px #dedede;
+  border-bottom:solid 1px #dedede;
+  overflow:hidden;
+  z-index: 1000;
+  position: fixed;
+}
+
+  </style>
+
+
+
+
+<div class="large-8 columns"> 
+  Codigo del Producto: <input type="search" name="codigo" id="codigo" placeholder="Introduzca el codigo" autofocus/>
+</div>
+<br/>
+
+<div id="display"></div>
+
+
+
+
+<div class="large-4 columns"> 
+  <h1>Total: $ 45.00</h1> 
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="large-8 columns"> 
+
+  <table id="tabla_productos">
+
   <thead>
-    <tr>
-      <th width="200">Nombre</th>
-      <th width="150">Descripción</th>
-      <th width="150">Acciones</th>
-    </tr>
-  </thead>
+      <tr>
+        <th colspan="6"> Ticket No.1</th>
+      </tr>
 
-  <tbody id="contenido_rol" class="">
-	@if($productos)		
-		@foreach($productos as $producto)
-		<tr>
-			<input type="hidden" name="id" id="id" value="{{$producto->id}}" />
-			<td >{{$producto->id}}</td>
-			<td>{{$producto->nombre}}</td>
-      <td ><img src="{{ 'imagenes/'.$producto->imagen }}" title="{{$producto->nombre}}"></td>    		
-    </tr>	
-		@endforeach
-	@endif
-  </tbody>
+      <tr>
+        <th>Cantidad</th>
+        <th>Producto</th>
+        <th>Precio de venta</th>
+        <th>Total</th>
+        <th>Importe</th>
+        <th></th>
+      </tr>
+    </thead>
 
-  <tr>
-  	<td colspan="3">
+    <tbody id="tabla_body_productos">
+      <tr id="prod_1">
+          <td>2</td>
+          <td>Hamburquesa chica</td>      
+          <td>$ 10</td>
+          <td>$ 20</td>
+          <td>20</td> 
+          <td> <input type="submit" value="Eliminar" onclick="elimina_pod(1);" /> </td> 
+      </tr>
+    </tbody>
 
-  	</td>
-  </tr>
-</table>
--->
+  </table>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="large-4 columns"> 
+
 
   <div class="swiper-container">
     <div class="swiper-wrapper">
+
+
   @if($productos)   
     @foreach($productos as $producto)
       <div class="swiper-slide" style="background:{{$producto->color}};">
-        <div class="title">
 
-          <img {{-- width="400" height="307"--}} ondblclick="myFunction({{$producto->id}})" src="{{ 'imagenes/'.$producto->imagen }}" title="{{$producto->nombre}}" alt="{{$producto->nombre}}" >  
-          <!--<input type="image" src="{{'imagenes/'.$producto->imagen}}" title="{{$producto->nombre}}" alt="Submit" width="400" height="307">-->
-          {{$producto->nombre}}      
+          <img {{--width="400" height="307"--}} ondblclick="myFunction({{$producto->id}},'{{$producto->nombre}}')" src="{{ 'imagenes/'.$producto->imagen }}" title="{{$producto->nombre}}" alt="{{$producto->nombre}}" />  
+          <div class="title">{{$producto->nombre}}</div>     
+          
 
-        </div>
       </div>
     @endforeach
   @endif
+
+
     </div>
-      <div class="pagination"></div>
+    <div class="pagination"></div>
   </div>
+
+
+
+</div>
+
+
+
+
+
+
+
 
 
 
@@ -173,62 +250,58 @@
 
   <script src="js/plugin/swiper-master/jquery-1.10.1.min.js"></script>
   <script src="js/plugin/swiper-master/dist/idangerous.swiper.min.js"></script>
-  <script>
+
+  <script>/*
   var mySwiper = new Swiper('.swiper-container',{
     pagination: '.pagination',
     paginationClickable: true,
     slidesPerView: 4,
     grabCursor: true,
     loop: true
-  })
+  })*/
 
-function myFunction(id){
-  alert(id);
-}
+  function myFunction(id,nombre){
+    var rowCount = $('#tabla_body_productos tr').length;
+    //alert(rowCount);
+
+    if(rowCount == 0){
+      $("#tabla_body_productos").append("<tr id=prod_1><td>2</td> <td>"+nombre+"</td>  <td>$ 10</td><td>$ 20</td><td>20</td><td><input type='submit' value='Eliminar' onclick='elimina_pod(1);' /></td>  </tr>");   
+    }
+
+
+    if (rowCount >= 1){
+      var siguiente=parseFloat(rowCount)+1;
+      $("#prod_"+rowCount).after("<tr id=prod_"+siguiente+"><td>2</td> <td>"+nombre+"</td>  <td>$ 10</td><td>$ 20</td><td>20</td><td><input type='submit' value='Eliminar' onclick='elimina_pod("+siguiente+");' /></td>  </tr>");   
+    }
+
+
+  }
+
+
+
+
+
+
+
+  function elimina_pod(id){
+    $("#tabla_body_productos #prod_"+id).remove();
+    //alert(id);
+  }
+
+
 
   </script>
 
 
-<br/>
+  <script>
+
+  var mySwiper = new Swiper('.swiper-container',{
+    pagination: '.pagination',
+    paginationClickable: true,
+    mode: 'vertical',
+    //slidesPerView: 2,
+    loop: true
+  })
 
 
-
-
-
-
-
-<table>
-  <tr>
-    <td> Ticket No.1</td>
-  </tr>
-
-  <tr>
-    <th>Codigo de barra</th>
-    <th>Descripcion de producto</th>
-    <th>Precio de venta</tH>
-    <th>Cantidad</th>
-    <th>Importe</th>
-    <th>Existencia</th>
-  </tr>
-
-  <tr>
-      <td>54654654654</td>
-      <td>Hamburquesa chica</td>
-      <td>$ 10</td>
-      <td>1</td>
-      <td>$ 10</td>
-      <td>20</td> 
-      <td><a href="">Eliminar</a></td> 
-  </tr>
-
-  <tr>
-      <td>54654654654</td>
-      <td>Hamburguesa Mediana</td>
-      <td>$ 15 </td>
-      <td>2</td>
-      <td>$ 30</td>
-      <td>20</td> 
-      <td><a href="">Eliminar</a></td> 
-  </tr>  
-
-</table>
+  </script>
