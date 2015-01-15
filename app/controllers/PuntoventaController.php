@@ -22,7 +22,7 @@ class PuntoventaController extends BaseController {
 		$productos=DB::table('productos AS P')
 			->select()
 			->join('categorias AS C', 'C.id', '=', 'P.categoria_id')
-			->select('P.imagen','P.id','P.nombre','C.color')
+			->select('P.imagen','P.id','P.nombre','C.color','P.precio_venta')
             //->groupBy('C.id')
             ->get();
 
@@ -45,14 +45,19 @@ $ingresos = DB::table('deposits AS D')
 
 		$b=Input::get('b');
 
-        $productos = Producto::where('nombre', 'LIKE',"%$b%")->orWhere('codigo_barra', 'LIKE', "%$b%")->get();
+        $productos = Producto::where('nombre', '=',"$b")->orWhere('codigo_barra', '=', "$b")->get();
 
-		return View::make('puntoventa.busqueda')->with('productos',$productos);
-		   /* foreach($productos as $prod){
-		   	 echo   '<div class="large-4 columns"> 
-		          		<div class="title">'.$prod->nombre.'</div>     		          
-		     		</div>';
-    		}*/
+        if($productos){
+
+			foreach($productos as $prod){	
+		   		echo "<script> myFunction(".$prod->id.",'".$prod->nombre."',".$prod->precio_venta."); </script>";
+    		}
+
+    		//return View::make('puntoventa.busqueda')->with('productos',$productos);
+    	}else{
+    		echo "<script> alert('Error');</script>";
+    	}
+
 	}
 
 

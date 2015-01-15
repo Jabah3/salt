@@ -43,7 +43,7 @@
 <script type="text/javascript">
 	$("#codigo").focus();
 
-
+/*
   //comprobamos si se pulsa una tecla
         $("#codigo").keyup(function(e){
                                      
@@ -74,7 +74,7 @@
               });
                                                                                   
                                                                            
-        });
+        });*/
 
 </script>
 
