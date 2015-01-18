@@ -301,6 +301,16 @@ class CreateTablasSaltTable extends Migration {
 		});
 
 
+		Schema::create('categorias',function($tabla){
+			$tabla->increments('id');
+			$tabla->string('nombre');
+			$tabla->string('descripcion');
+			$tabla->string('color');
+			$tabla->timestamps();
+		});
+
+
+
 	}
 
 
@@ -313,26 +323,30 @@ class CreateTablasSaltTable extends Migration {
 	public function down()
 	{
 
-		Schema::drop('clientes');
-		Schema::drop('compras_insumos');
-		Schema::drop('compras_productos');
-		Schema::drop('grupos');
-		Schema::drop('insumos');
-		Schema::drop('insumos_productos');
-		Schema::drop('insumos_proveedors');
-		Schema::drop('inventarios');
-		Schema::drop('productos');
-		Schema::drop('productos_proveedors');
-		Schema::drop('proveedores');
-		Schema::drop('recetas');
-		Schema::drop('registros_eventos');
-		Schema::drop('roles, sucursales');
-		Schema::drop('unidades_medidas');
-		Schema::drop('usuarios');
-		Schema::drop('ventas');
-		Schema::drop('ventas_detalles');
 		Schema::drop('tipo_tiendas');
+		Schema::drop('ventas_detalles');
+		Schema::drop('ventas');
+		Schema::drop('clientes');
+		Schema::drop('registros_eventos');
+		Schema::drop('compras_productos');
+		Schema::drop('productos_proveedores');
+		Schema::drop('recetas');
+		Schema::drop('insumos_proveedores');
+		Schema::drop('compras_insumos');
+		Schema::drop('inventarios');
+		Schema::drop('insumos_productos');
+		Schema::drop('productos');
+		Schema::drop('proveedores');
+		Schema::drop('insumos');
+		Schema::drop('usuarios');
+		Schema::drop('grupos');
+		Schema::drop('sucursales');
+		Schema::drop('roles');
+		Schema::drop('unidad_medidas');
+		Schema::drop('categorias');
 
 	}
 
 }
+
+

@@ -1,27 +1,17 @@
-    
 @extends('layoutPuntoVenta')
+
+
+
+
 
 @section('content')
 
 
 
-
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
-
 		<section class="row">
-
-
-
-
-
 			<section id="contenido">
 			@include('puntoventa.contenido')
 			</section>
-
 		</section>
 
 
@@ -47,48 +37,32 @@
 	    <!--Contiene acciones como guardar,editar,eliminar-->
 		<script src="js/acciones.js"></script>
 
-
-
 <script type="text/javascript">
-	$("#codigo").focus();
+$("#codigo").focus();
 
-/*
-  //comprobamos si se pulsa una tecla
-        $("#codigo").keyup(function(e){
-                                     
-              //obtenemos el texto introducido en el campo de búsqueda
-              consulta = $("#codigo").val();
-                                                                           
-              //hace la búsqueda
-                                                                                  
-              $.ajax({
-                    type: "POST",
-                    url: "punto_venta/busqueda",
-                    data: "b="+consulta,
-                    dataType: "html",
-                    beforeSend: function(){
-                          //imagen de carga
-                          $("#display").html("<p align='center'><img src='ajax-loader.gif' /></p>");
-                    },
-                    error: function(){
-                          alert("error petición ajax");
-                    },
-                    success: function(data){                                                    
-                          $("#display").empty();
-                          //$("#display").append(data);
-                          //$("#codigo").append(data);
-                          //$("#display").prepend(data);      
-                          $("#display").after(data);                                                      
-                    }
-              });
-                                                                                  
-                                                                           
-        });*/
+$(document).ready(function(){
+	$("#cajabusqueda").on('keyup', function(){
+		var valor = $(this).val();
+		var formData = {'valor' : valor };
+			$.ajax({
+		        type : "POST",
+		        url  : "punto_venta/busqueda",
+		        data : formData,
+		        success:function(data, textStatus, jqXHR) 
+			    {	
+			    	$("#display").css({"display":"block"});   
+			        $("#display").html(data);   
+			    },
+			    error: function(jqXHR, textStatus, errorThrown) 
+			    {
+			        alert("Ocurrio un Error al Buscar");     
+			    }		        
+			});
+			event.preventDefault(); //STOP default action
+		    //event.unbind(); //unbind. to stop multiple form submit.
+	});		
+});
 
 </script>
-
-
-
-
 
 @stop

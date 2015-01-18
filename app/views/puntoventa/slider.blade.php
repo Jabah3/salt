@@ -90,7 +90,8 @@
 
         <!-- Slides Container -->
         <div u="slides" style="cursor: move; position: absolute; left: 0px; top: 0px; width: 100%; height: 150px; overflow: hidden;">
-            <div><img u="image" src="../img/ancient-lady/005.jpg" /></div>
+        <!--
+            <div><img u="image" src="../img/ancient-lady/005.jpg" ondblclick="producto(2);"/></div>
             <div><img u="image" src="../img/ancient-lady/006.jpg" /></div>
             <div><img u="image" src="../img/ancient-lady/011.jpg" /></div>
             <div><img u="image" src="../img/ancient-lady/013.jpg" /></div>
@@ -113,6 +114,18 @@
             <div><img u="image" src="../img/ancient-lady/044.jpg" /></div>
             <div><img u="image" src="../img/ancient-lady/047.jpg" /></div>
             <div><img u="image" src="../img/ancient-lady/050.jpg" /></div>
+-->
+
+  @if($productos)   
+    @foreach($productos as $producto)
+       <div>
+            <img u="image" src="{{ 'imagenes/'.$producto->imagen}}" ondblclick="myFunction({{$producto->id}},'{{$producto->nombre}}','{{$producto->precio_venta}}')"/>
+            <center>sss</center>
+       </div>
+    @endforeach
+  @endif
+
+
         </div>
 
 

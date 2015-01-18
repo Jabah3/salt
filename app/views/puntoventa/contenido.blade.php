@@ -1,10 +1,25 @@
 <?php $uri = Request::path(); ?> 
 
+
+
+<style>
+  #display{
+    /*width: 100px;*/
+   /* height: 51px;*/
+    /*background: #cac;*/
+    margin-top: -15px !important;
+    position: fixed;
+    z-index: 1000;
+    margin-left: -16px !important;
+  }
+</style>
+
+
 <div class="large-8 columns"> 
-  Codigo del Producto: <input type="search" name="codigo" id="codigo" placeholder="Introduzca el codigo" autofocus/>
+  Codigo del Producto: <input type="search" class="buscar" id="cajabusqueda" placeholder="Introduzca el codigo" autofocus/>
+  <div id="display" style="display:none;"></div>
 </div>
-<br/>
-<div id="display"></div>
+
 
 
 
@@ -89,7 +104,6 @@
 <script>
 function myFunction(id,nombre,precio){
     var rowCount = $('#tabla_body_productos tr').length;
-
     if(rowCount == 0){
       $("#tabla_body_productos").append("<tr><td>1</td> <td>"+nombre+"</td>  <td>$ "+precio+"</td><td>$ "+precio+"</td><td class='eliminar'><a>E</a></td></tr>");   
     }
@@ -98,21 +112,25 @@ function myFunction(id,nombre,precio){
       var siguiente=parseFloat(rowCount)+1;
       $("#tabla_body_productos tr:last").after("<tr><td>1</td> <td>"+nombre+"</td>  <td>$ "+precio+"</td><td>$ "+precio+"</td><td class='eliminar'><a>E</a></td></tr>");   
     }
-
+    $("#display").css({"display":"none"}); 
 }
 
-  $(document).on("click",".eliminar",function(){
+$(document).on("click",".eliminar",function(){
     var parent = $(this).parents().get(0);
     $(parent).remove();
-  });
+});
 
 
-$("#codigo").keypress(function(e) {
-    consulta = $("#codigo").val();
+$("#cajabusqueda").keypress(function(e) {
+   var keycode = (event.keyCode ? event.keyCode : event.which);
+
+    if(keycode == '13'){      
+      consulta = $("#cajabusqueda").val();
+      alert("s");
      $.ajax({
             type: "POST",
             url: "punto_venta/busqueda",
-            data: "b="+consulta,
+            data: "valor="+consulta,
             dataType: "html",
             beforeSend: function(){
                   //imagen de carga
@@ -126,9 +144,9 @@ $("#codigo").keypress(function(e) {
                   //$("#display").append(data);
                   //$("#codigo").append(data);
                   //$("#display").prepend(data);      
-                  $("#resultados").html(data);                                                      
+                $("#display").html(data);                                                      
             }
       });
-
+    }
 });
 </script>

@@ -43,21 +43,10 @@ $ingresos = DB::table('deposits AS D')
 
 	public function postBusqueda(){
 
-		$b=Input::get('b');
+		$b=Input::get('valor');
 
-        $productos = Producto::where('nombre', '=',"$b")->orWhere('codigo_barra', '=', "$b")->get();
-
-        if($productos){
-
-			foreach($productos as $prod){	
-		   		echo "<script> myFunction(".$prod->id.",'".$prod->nombre."',".$prod->precio_venta."); </script>";
-    		}
-
-    		//return View::make('puntoventa.busqueda')->with('productos',$productos);
-    	}else{
-    		echo "<script> alert('Error');</script>";
-    	}
-
+        $productos = Producto::where('nombre', 'LIKE',"%$b%")->orWhere('codigo_barra', 'LIKE', "%$b%")->orWhere('codigo', 'LIKE', "%$b%")->get();
+        return View::make('puntoventa.busqueda')->with('productos',$productos);
 	}
 
 
