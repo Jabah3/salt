@@ -23,6 +23,13 @@ class CreateTablasSaltTable extends Migration {
 		});
 
 
+		Schema::create('categorias',function($tabla){
+			$tabla->increments('id');
+			$tabla->string('nombre');
+			$tabla->string('descripcion');
+			$tabla->string('color');
+			$tabla->timestamps();
+		});
 
 		Schema::create('roles',function($tabla){
 			$tabla->increments('id');
@@ -119,7 +126,7 @@ class CreateTablasSaltTable extends Migration {
 		Schema::create('productos',function($tabla){
 			$tabla->increments('id');
 			$tabla->string('nombre');
-			$tabla->string('materia_prima');
+			$tabla->string('materia_prima')->nullable();
 			$tabla->integer('codigo_barra');
 			$tabla->double('precio_venta');
 			$tabla->double('costo_produccion');
@@ -131,15 +138,19 @@ class CreateTablasSaltTable extends Migration {
 			$tabla->double('stock_minimo');
 			$tabla->double('stock_maximo');
 			$tabla->string('imagen');
-			$tabla->double('cantidad');
-			$tabla->integer('proveedores_id')->unsigned();
+			$tabla->double('cantidad')->nullable();
+			$tabla->integer('proveedores_id')->unsigned()->nullable();
 			$tabla->foreign('proveedores_id')->references('id')->on('proveedores')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->integer('codigo');
-			$tabla->integer('unidad_medidas_id')->unsigned();
+			$tabla->integer('unidad_medidas_id')->unsigned()->nullable();
 			$tabla->foreign('unidad_medidas_id')->references('id')->on('unidad_medidas')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->double('iva');
-			$tabla->date('caducidad');
-			$tabla->integer('usuario_id')->unsigned();
+
+			$tabla->integer('categoria_id')->unsigned()->nullable();
+			$tabla->foreign('categoria_id')->references('id')->on('categorias')->onDelete('restrict')->onUpdate('restrict');
+
+			$tabla->date('caducidad')->nullable();
+			$tabla->integer('usuario_id')->unsigned()->nullable();
 			$tabla->foreign('usuario_id')->references('id')->on('usuarios')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->timestamps();
 		});
@@ -301,13 +312,7 @@ class CreateTablasSaltTable extends Migration {
 		});
 
 
-		Schema::create('categorias',function($tabla){
-			$tabla->increments('id');
-			$tabla->string('nombre');
-			$tabla->string('descripcion');
-			$tabla->string('color');
-			$tabla->timestamps();
-		});
+
 
 
 
