@@ -1,20 +1,7 @@
-<!doctype html>
-<html class="no-js" lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sistema de administracion de comercios en la nube</title>
-    <link href='http://fonts.googleapis.com/css?family=Lato&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-    <link href="css/ionicons.css" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="css/app.css" />
-     <link rel="stylesheet" href="css/rev.css" />
-    <script src="bower_components/modernizr/modernizr.js"></script>
     
-  </head>
+@extends('layout')
 
-  <body>
-
-
+@section('content')
 
 <section class="row">
 <?php //$uri = Request::path(); ?>   
@@ -55,7 +42,6 @@
 	<script src="js/acciones.js"></script>
 
 
+@stop
 
 
-  </body>
-</html>

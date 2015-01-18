@@ -41,7 +41,9 @@
                   <li><a href="#">Proveedores</a></li>
                   <li><a href="#">Clientes</a></li>
                   <li><a href="#">Compras</a></li>
+
                   <li><a href="#">Ventas</a></li>
+
                    <li class="has-dropdown">
                     <a href="#">Productos</a>
                     <ul class="dropdown">
@@ -49,6 +51,16 @@
                       <li><a href="#">Insumos</a></li>
                     </ul>
                   </li>
+
+                   <li class="has-dropdown">
+                    <a href="#">Configuracion</a>
+                    <ul class="dropdown">
+                      <li><a href="roles">Roles</a></li>
+                      <li><a href="unidad_medida">Unidad de Medida</a></li>
+                    </ul>
+                  </li>
+
+
                 </ul>
               </section>
        </nav>
