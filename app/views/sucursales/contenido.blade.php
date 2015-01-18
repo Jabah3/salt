@@ -31,8 +31,20 @@
       <td>{{$sucursal->mensaje_sucursal}}</td>
       <td>{{$sucursal->pagina_web}}</td>
       <td>{{$sucursal->descripcion}}</td>
-      <td> <a href="#" id="eliminar" onclick="elimina({{$sucursal->id}},'{{$uri}}');">ELIM</a> <a  href="#" onclick="formatoedita({{$sucursal->id}},'{{$uri}}');" id="">EDIT</a>
-        </td>
+      <td> 
+
+        <ul class="button-group">
+          <li>
+            <a href="#" class="button tiny secondary" onclick="formatoedita({{$sucursal->id}},'{{$uri}}');" id=""><i class="icon ion-edit"></i> Editar</a>
+          </li>
+          <li>
+            <a href="#" id="eliminar" class="button tiny alert" onclick="elimina({{$sucursal->id}},'{{$uri}}');"><i class="icon ion-close"></i> Eliminar</a>
+          </li>         
+        </ul>
+
+
+
+      </td>
       </tr> 
     @endforeach
   @endif

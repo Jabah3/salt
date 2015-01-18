@@ -57,6 +57,10 @@
                     <ul class="dropdown">
                       <li><a href="roles">Roles</a></li>
                       <li><a href="unidad_medida">Unidad de Medida</a></li>
+                      <li><a href="grupos">Grupos</a></li>
+                      <li><a href="sucursales">Sucursales</a></li>
+                      <li><a href="usuarios">Usuarios</a></li>
+                      
                     </ul>
                   </li>
 

@@ -1,5 +1,5 @@
 <?php $uri = Request::path(); ?> 
-<table>
+<table  style="width:100%;">
   <thead>
     <tr>
       <th width="200">Tipo Unidad</th>
@@ -17,8 +17,20 @@
 			<td >{{$um->tipo_unidad}}</td>
 			<td>{{$um->unidad_medida}}</td>
       <td>{{$um->descripcion}}</td>
-			<td> <a href="#" id="eliminar" onclick="elimina({{$um->id}},'{{$uri}}');">ELIM</a> <a  href="#" onclick="formatoedita({{$um->id}},'{{$uri}}');" id="">EDIT</a>
-    		</td>
+			<td> 
+
+
+        <ul class="button-group">
+          <li>
+            <a href="#" class="button tiny secondary"  onclick="formatoedita({{$um->id}},'{{$uri}}');" id=""><i class="icon ion-edit"></i> Editar</a>
+          </li>
+          <li>
+            <a href="#" id="eliminar" class="button tiny alert" onclick="elimina({{$um->id}},'{{$uri}}');"><i class="icon ion-close"></i> Eliminar</a>
+          </li>         
+        </ul>
+
+
+    	</td>
     	</tr>	
 		@endforeach
 	@endif

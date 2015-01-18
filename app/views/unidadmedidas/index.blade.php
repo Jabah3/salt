@@ -2,23 +2,25 @@
 @extends('layout')
 
 @section('content')
+	<section class="row">
+			<div class="large-12 columns">
+				<h2>Unidades de Medida</h2>
+				<section class="row">
+					<div class="large-12 columns text-right">
+						<a href="#" data-reveal-id="ModalAgrega" class="button small"><i class="icon ion-plus"></i> Nuevo</a>
+					</div>
+				</section>
+				<!-- <input type="submit" data-reveal-id="ModalAgrega" class="button small" value="Agregar"> -->
+				<section id="contenido">
+					@include('unidadmedidas.contenido')
+				</section>
+			</div>
 
-<section class="row">
-<?php //$uri = Request::path(); ?>   
-
-	<input type="submit" data-reveal-id="ModalAgrega" class="button" value="Agregar">
-
-
-	<section id="contenido">
-		@include('unidadmedidas.contenido')
 	</section>
 
-</section>
 
 
-
-<div id="respuesta"></div>
-
+	<div id="respuesta"></div>
 
 
 <?php $uri = Request::path(); ?> 
@@ -28,16 +30,6 @@
 
 
 
-
-
-
-
-
-<!-- Paginacion con Ajax -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/foundation/js/foundation.min.js"></script>
-    <script src="js/app.js"></script>
     <!--Contiene acciones como guardar,editar,eliminar-->
 	<script src="js/acciones.js"></script>
 

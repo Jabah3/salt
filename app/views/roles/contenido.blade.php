@@ -1,6 +1,4 @@
 <?php $uri = Request::path(); ?> 
-
-
 <table style="width:100%;">
   <thead>
     <tr>
@@ -20,13 +18,13 @@
 			<td> 
         <ul class="button-group">
           <li>
-            <a href="#" id="eliminar" class="button tiny" onclick="elimina({{$rol->id}},'{{$uri}}');"><i class="icon ion-close"></i> Eliminar</a>
+            <a href="#" class="button tiny secondary" onclick="formatoedita({{$rol->id}},'{{$uri}}');" id=""><i class="icon ion-edit"></i> Editar</a>
           </li>
           <li>
-            <a href="#" class="button tiny" onclick="formatoedita({{$rol->id}},'{{$uri}}');" id=""><i class="icon ion-edit"></i> Editar</a>
-          </li>
+            <a href="#" id="eliminar" class="button tiny alert" onclick="elimina({{$rol->id}},'{{$uri}}');"><i class="icon ion-close"></i> Eliminar</a>
+          </li>         
         </ul>
-    		</td>
+    	</td>
     	</tr>	
 		@endforeach
 	@endif

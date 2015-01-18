@@ -1,5 +1,5 @@
 <?php $uri = Request::path(); ?> 
-<table>
+<table  style="width:100%;">
   <thead>
     <tr>
       <th width="200">Nombre</th>
@@ -15,8 +15,18 @@
 			<input type="hidden" name="id" id="id" value="{{$grupo->id}}" />
 			<td >{{$grupo->nombre}}</td>
 			<td>{{$grupo->descripcion}}</td>
-			<td> <a href="#" id="eliminar" onclick="elimina({{$grupo->id}},'{{$uri}}');">ELIM</a> <a  href="#" onclick="formatoedita({{$grupo->id}},'{{$uri}}');" id="">EDIT</a>
-    		</td>
+			<td> 
+        <ul class="button-group">
+          <li>
+            <a href="#" class="button tiny secondary" onclick="formatoedita({{$grupo->id}},'{{$uri}}');" id=""><i class="icon ion-edit"></i> Editar</a>
+          </li>
+          <li>
+            <a href="#" id="eliminar" class="button tiny alert" onclick="elimina({{$grupo->id}},'{{$uri}}');"><i class="icon ion-close"></i> Eliminar</a>
+          </li>         
+        </ul>
+
+
+    	</td>
     	</tr>	
 		@endforeach
 	@endif
