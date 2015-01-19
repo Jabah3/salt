@@ -39,7 +39,7 @@
                 <ul class="left">
                   <li class="active"><a href="#">Inicio</a></li>
                   <li><a href="#">Proveedores</a></li>
-                  <li><a href="#">Clientes</a></li>
+                  <li><a href="clientes">Clientes</a></li>
                   <li><a href="#">Compras</a></li>
 
                   <li><a href="#">Ventas</a></li>

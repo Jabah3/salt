@@ -18,12 +18,17 @@ class UsuarioController extends BaseController {
 	{
 		//$roles = DB::table('roles')->orderBy('created_at', 'desc')->paginate(5);
 		$usuarios= Usuario::orderBy('created_at', 'desc')->paginate(5);
+		$roles = Rol::all( array('id','nombre'));
+		$sucursales = Sucursal::all( array('id','nombre'));
+		$grupos = Grupo::all( array('id','nombre'));
+
+		//$users = DB::table('users')->select('name as user_name')->get();
 
 		    if (Request::ajax()) {
             	return Response::json(View::make('usuarios.contenido', array('usuarios' => $usuarios))->render());
         	}
 
-		return View::make('usuarios.index')->with('usuarios',$usuarios);
+		return View::make('usuarios.index')->with('usuarios',$usuarios)->with('roles',$roles)->with('sucursales',$sucursales)->with('grupos',$grupos);
 	}
 
 
