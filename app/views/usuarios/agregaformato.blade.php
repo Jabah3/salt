@@ -45,7 +45,14 @@
         <div class="row">
           <div class="large-12 columns">
             <label>Rol
-              <input type="text" id="rol_id" name="rol_id" placeholder="Escribe Tipo Unidad" required />
+            @if($roles)
+              <select id="rol_id" name="rol_id" required>
+                <option></option>
+                @foreach($roles as $rol)
+                <option value="{{$rol->id}}">{{$rol->nombre}}</option>                
+                @endforeach
+              </select> 
+            @endif
             </label>
           </div>
         </div>
@@ -54,7 +61,14 @@
         <div class="row">
           <div class="large-12 columns">
             <label>Sucursal
-              <input type="text" id="sucursal_id" name="sucursal_id" placeholder="Escribe Tipo Unidad" required />
+            @if($sucursales)
+              <select id="sucursal_id" name="sucursal_id" required>
+                <option></option>
+                @foreach($sucursales as $sucursal)
+                <option value="{{$sucursal->id}}">{{$sucursal->nombre}}</option>                
+                @endforeach
+              </select> 
+            @endif
             </label>
           </div>
         </div>
@@ -87,7 +101,14 @@
         <div class="row">
           <div class="large-12 columns">
             <label>Grupo
-              <input type="text" id="grupo_id" name="grupo_id" placeholder="Escribe Tipo Unidad" required />
+            @if($grupos)
+              <select id="grupo_id" name="grupo_id"  required>
+                <option></option>
+                @foreach($grupos as $grupo)
+                <option value="{{$grupo->id}}">{{$grupo->nombre}}</option>                
+                @endforeach
+              </select> 
+            @endif
             </label>
           </div>
         </div>

@@ -6,7 +6,7 @@ use Illuminate\Auth\Reminders\RemindableTrait;
 use Illuminate\Auth\Reminders\RemindableInterface;
 
 class Cliente extends Eloquent implements UserInterface, RemindableInterface {
-
+	use UserTrait, RemindableTrait;
 	/**
 	 * The database table used by the model.
 	 *
@@ -21,6 +21,7 @@ class Cliente extends Eloquent implements UserInterface, RemindableInterface {
 	 */
 	
 
+	
 	public function venta(){
 	    return $this->belongsTo('Ventas');
 	}
