@@ -29,8 +29,8 @@ class Insumo extends Eloquent implements UserInterface, RemindableInterface {
 		//return $this->hasMany('Deposito');
 	}
 
-	public function insumoproveedores(){
-		return $this->hasMany('Insumoproveedor','id');
+	public function proveedores(){
+		return $this->belongsToMany('Proveedor','insumos_proveedores');
 		//return $this->hasMany('Deposito');
 	}
 

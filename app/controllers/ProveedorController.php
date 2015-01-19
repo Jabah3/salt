@@ -17,7 +17,13 @@ class ProveedorController extends BaseController {
 
 	public function getIndex()
 	{
-		return View::make('proveedor.index');
+		$proveedores= Proveedor::orderBy('created_at', 'desc')->paginate(5);
+
+		    if (Request::ajax()) {
+            	return Response::json(View::make('proveedores.contenido', array('proveedores' => $proveedores))->render());
+        	}
+
+		return View::make('proveedores.index')->with('proveedores',$proveedores);
 	}
 
 }

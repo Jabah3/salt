@@ -24,17 +24,17 @@ class Producto extends Eloquent implements UserInterface, RemindableInterface {
 	 * @var array
 	 */
 
-/*
-	public function productoProveedor()
+
+	public function proveedor()
 	{
-		return $this->hasMany('Productoproveedor','producto_id')
+		return $this->hasMany('Proveedor')
 	}
 
-	public function compaProducto()
-	{
-		return $this->hasMany('Compraproducto','producto_id');
-	}
-*/
+	// public function compaProducto()
+	// {
+	// 	return $this->hasMany('Compraproducto','producto_id');
+	// }
+
 	public function receta()
 	{
 		return $this->hasMany('Receta', 'producto_id');

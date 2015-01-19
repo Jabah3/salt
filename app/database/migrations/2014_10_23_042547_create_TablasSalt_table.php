@@ -118,8 +118,8 @@ class CreateTablasSaltTable extends Migration {
 			$tabla->string('telefono');
 			$tabla->string('email');
 			$tabla->integer('activo');
-			$tabla->integer('insumo_id')->unsigned();
-			$tabla->foreign('insumo_id')->references('id')->on('insumos')->onDelete('restrict')->onUpdate('restrict');
+			//$tabla->integer('insumo_id')->unsigned();
+			//$tabla->foreign('insumo_id')->references('id')->on('insumos')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->timestamps();
 		});
 
@@ -198,6 +198,9 @@ class CreateTablasSaltTable extends Migration {
 			$tabla->increments('id');
 			$tabla->integer('insumos_id')->unsigned();
 			$tabla->foreign('insumos_id')->references('id')->on('insumos')->onDelete('restrict')->onUpdate('restrict');
+			$tabla->integer('proveedores_id')->unsigned();
+			$tabla->foreign('proveedores_id')->references('id')->on('proveedores')->onDelete('restrict')->onUpdate('restrict');
+			$tabla->double('precio_compra');
 			$tabla->timestamps();
 		});
 
@@ -217,13 +220,13 @@ class CreateTablasSaltTable extends Migration {
 
 
 
-		Schema::create('productos_proveedores',function($tabla){
-			$tabla->increments('id');
-			$tabla->integer('producto_id')->unsigned();
-			$tabla->foreign('producto_id')->references('id')->on('productos')->onDelete('restrict')->onUpdate('restrict');
-			$tabla->integer('proveedor_id')->unsigned();
-			$tabla->foreign('proveedor_id')->references('id')->on('proveedores')->onDelete('restrict')->onUpdate('restrict');
-		});
+		// Schema::create('productos_proveedores',function($tabla){
+		// 	$tabla->increments('id');
+		// 	$tabla->integer('producto_id')->unsigned();
+		// 	$tabla->foreign('producto_id')->references('id')->on('productos')->onDelete('restrict')->onUpdate('restrict');
+		// 	$tabla->integer('proveedor_id')->unsigned();
+		// 	$tabla->foreign('proveedor_id')->references('id')->on('proveedores')->onDelete('restrict')->onUpdate('restrict');
+		// });
 
 
 
@@ -334,7 +337,7 @@ class CreateTablasSaltTable extends Migration {
 		Schema::drop('clientes');
 		Schema::drop('registros_eventos');
 		Schema::drop('compras_productos');
-		Schema::drop('productos_proveedores');
+		//Schema::drop('productos_proveedores');
 		Schema::drop('recetas');
 		Schema::drop('insumos_proveedores');
 		Schema::drop('compras_insumos');
