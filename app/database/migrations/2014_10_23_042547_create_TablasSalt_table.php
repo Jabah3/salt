@@ -256,9 +256,9 @@ class CreateTablasSaltTable extends Migration {
 			$tabla->increments('id');
 			$tabla->string('nombres');
 			$tabla->string('apellidos');
-			$tabla->integer('rol_id')->unsigned();
+			$tabla->integer('rol_id')->unsigned()->nullable();
 			$tabla->foreign('rol_id')->references('id')->on('roles')->onDelete('restrict')->onUpdate('restrict');
-			$tabla->integer('sucursal_id')->unsigned();
+			$tabla->integer('sucursal_id')->unsigned()->nullable();
 			$tabla->foreign('sucursal_id')->references('id')->on('sucursales')->onDelete('restrict')->onUpdate('restrict');
 			$tabla->string('telefono');
 			$tabla->string('email');
