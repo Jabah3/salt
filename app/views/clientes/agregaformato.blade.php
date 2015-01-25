@@ -63,7 +63,11 @@
         <div class="row">
           <div class="large-12 columns">
             <label>Sexo
-              <textarea name="sexo" id="sexo" placeholder="Escribre el genero"></textarea>
+              <select id="sexo" name="sexo" required>
+                <option></option>
+                <option value="M">Masculino</option>    
+                <option value="F">Femenino</option>             
+              </select> 
             </label>
           </div>
         </div>

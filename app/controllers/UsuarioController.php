@@ -54,26 +54,7 @@ class UsuarioController extends BaseController {
 		$Usuarios->save();
 
 		return $nombres;
-/*
 
-		echo "<br>". Input::get('usuario');
-		echo "<br>". Input::get('contrasena');
-		//$reg->password=Hash::make(Input::get('password'));
-		echo "<br>". Input::get('nombre');
-	    echo "<br>". Input::get('apellido');
-	    echo "<br>". Input::get('rol_id');
-	    echo "<br>". Input::get('sucursal_id');
-	    echo "<br>". Input::get('telefono');
-	    echo "<br>". Input::get('email');
-	    echo "<br>". Input::get('grupo_id');
-	    echo "<br>". Input::get('ciudad');
-	    echo "<br>". Input::get('estado');
-	    echo "<br>". Input::get('activo');
-	    echo "<br>". Input::get('sexo');
-	    echo "<br>". Input::get('foto');
-	    echo "<br>". Input::get('descripcion');
-
-*/
 
 	}
 
@@ -82,12 +63,25 @@ class UsuarioController extends BaseController {
 	public function postGuardaedicion()
 	{
 		//$Rol = new Rol; 
-		Rol::where('id', '=', Input::get('id'))->update
+		Usuario::where('id', '=', Input::get('id'))->update
 		(
 			array
 			(
-				'nombre'=>Input::get('nombre'),				
-				'descripcion'=>Input::get('descripcion')
+				//'contrasena'	=>Hash::make(Input::get('contrasena')),
+				'nombre'		=>Input::get('nombre'),
+			    'apellido'		=>Input::get('apellido'),
+			    'rol_id'		=>Input::get('rol_id'),
+			    'sucursal_id'	=>Input::get('sucursal_id'),
+			    'telefono'		=>Input::get('telefono'),
+			    'email'			=>Input::get('email'),
+			    'grupo_id'		=>Input::get('grupo_id'),
+			    'ciudad'		=>Input::get('ciudad'),
+			    'estado'		=>Input::get('estado'),
+			    'activo'		=>1,
+			    'sexo'			=>Input::get('sexo'),
+			    'foto'			=>Input::get('foto'),
+			    'descripcion'	=>Input::get('descripcion')
+
 			)
 		);
 	}
@@ -98,7 +92,7 @@ class UsuarioController extends BaseController {
 	public function postElimina()
 	{
 		$id=Input::get('id');
-	 	$elimina = Rol::find($id);
+	 	$elimina = Usuario::find($id);
 	        
 	    if (is_null ($elimina))
 	    {
@@ -114,28 +108,22 @@ class UsuarioController extends BaseController {
 	public function postFormatoedita()
 	{
 		$id=Input::get('id');
-		$rol = Rol::where('id', '=', $id)->get();
+		$usuarios = Usuario::where('id', '=', $id)->get();
+		//Crypt::decrypt(Input::get('txtContraseniaEncriptada'));
 		$uri=Input::get('uri');
-		return View::make('usuarios.editaformato')->with('rol',$rol)->with('uri',$uri);
+		$roles = Rol::all( array('id','nombre'));
+		$sucursales = Sucursal::all( array('id','nombre'));
+		$grupos = Grupo::all( array('id','nombre'));
+
+		return View::make('usuarios.editaformato')
+			->with('usuarios',$usuarios)
+			->with('roles',$roles)
+			->with('sucursales',$sucursales)
+			->with('grupos',$grupos)
+			->with('uri',$uri);
 	}
 
 
-	public function getPaginacion()
-	{	
-		//return $someUsers = Rol::where('id', '>', 1)->simplePaginate(6);
-		//return View::make('photos.show', array('photos' => $photos));
-  /** 	$per_page=5;
-	$Rol = DB::table('roles')->paginate($per_page, array('id', 'nombre', 'created_at'));
-
-	$paginacion=1;
-		foreach ($Rol as $order){
-		    //echo $order->id." "; 
-		    echo $paginacion++." ";
-		}
-
-	echo $total = DB::table('roles')->count();
-	echo "habra ".$steps=$total/$per_page;*/		
-	}
 
 
 

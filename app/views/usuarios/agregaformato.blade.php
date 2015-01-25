@@ -179,7 +179,12 @@
         <div class="row">
           <div class="large-12 columns">
             <label>Sexo
-              <input type="text" id="sexo" name="sexo" placeholder="Escribe Tipo Sexo" required />
+             
+              <select id="sexo" name="sexo" required>
+                <option></option>
+                <option value="M">Masculino</option>    
+                <option value="F">Femenino</option>             
+              </select> 
             </label>
           </div>
         </div>

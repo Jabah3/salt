@@ -1,5 +1,5 @@
-@if($sucursales)
-  @foreach($sucursales as $value)
+@if($usuarios)
+  @foreach($usuarios as $value)
 
 
 
@@ -8,6 +8,7 @@
                 <h2>Edita Rol</h2>
                 <form action='{{$uri}}/guardaedicion' method='post' name='FormularioGuardaEdicion' id='FormularioGuardaEdicion' >
                 <input type='hidden' name='id' id='id' value='{{$value->id}}'/>
+                      
                       <div class='row'>
                         <div class='large-12 columns'>
                           <label>Nombre
@@ -22,18 +23,8 @@
 
                       <div class='row'>
                         <div class='large-12 columns'>
-                          <label>ciudad
-                            <input type='text' id='ciudad' name='ciudad' value='{{$value->ciudad}}' placeholder='Escribe el nombre del Rol' required>
-                          </label>
-                        </div>
-                      </div>
-
-
-
-                      <div class='row'>
-                        <div class='large-12 columns'>
-                          <label>calle
-                            <input type='text' id='calle' name='calle' value='{{$value->calle}}' placeholder='Escribe el nombre del Rol' required>
+                          <label>apellido
+                            <input type='text' id='apellido' name='apellido' value='{{$value->apellido}}' placeholder='Escribe el apellido' required>
                           </label>
                         </div>
                       </div>
@@ -41,58 +32,125 @@
 
                       <div class='row'>
                         <div class='large-12 columns'>
-                          <label>colonia
-                            <input type='text' id='colonia' name='colonia' value='{{$value->colonia}}' placeholder='Escribe el nombre del Rol' required>
+                          <label>Contraseña
+                            <input type='password' id='contrasena' name='contrasena' value='{{$value->contrasena}}' placeholder='Escribe el apellido' required>
+                          </label>
+                        </div>
+                      </div>
+
+
+                      <div class="row">
+                        <div class="large-12 columns">
+                          <label>Rol
+                          @if($roles)
+                            <select id="rol_id" name="rol_id" required>
+                              <option></option>
+                              @foreach($roles as $rol)
+                                <option value="{{$rol->id}}" @if(($rol->id)==($value->rol_id)) selected @endif>{{$rol->nombre}}</option>  
+                              @endforeach
+                            </select> 
+                          @endif
+                          </label>
+                        </div>
+                      </div>
+
+
+                      <div class="row">
+                        <div class="large-12 columns">
+                          <label>Sucursal
+                          @if($sucursales)
+                            <select id="sucursal_id" name="sucursal_id" required>
+                              <option></option>
+                              @foreach($sucursales as $sucursal)
+                              <option value="{{$sucursal->id}}" @if(($sucursal->id)==($value->sucursal_id)) selected @endif>{{$sucursal->nombre}}</option>                
+                              @endforeach
+                            </select> 
+                          @endif
                           </label>
                         </div>
                       </div>
 
 
 
-                      <div class='row'>
-                        <div class='large-12 columns'>
-                          <label>giro
-                            <input type='text' id='giro' name='giro' value='{{$value->giro}}' placeholder='Escribe el nombre del Rol' required>
+                      <div class="row">
+                        <div class="large-12 columns">
+                          <label>Ciudad
+                            <input type="text" id="ciudad" name="ciudad" placeholder="Escribe Tipo Unidad" value='{{$value->ciudad}}' required />
                           </label>
                         </div>
                       </div>
 
-                      <div class='row'>
-                        <div class='large-12 columns'>
-                          <label>rfc
-                            <input type='text' id='rfc' name='rfc' value='{{$value->rfc}}' placeholder='Escribe el nombre del Rol' required>
-                          </label>
-                        </div>
-                      </div>
-
-                      <div class='row'>
-                        <div class='large-12 columns'>
-                          <label>mensaje_sucursal
-                            <input type='text' id='mensaje_sucursal' name='mensaje_sucursal' value='{{$value->mensaje_sucursal}}' placeholder='Escribe el nombre del Rol' required>
+                      <div class="row">
+                        <div class="large-12 columns">
+                          <label>Telefono
+                            <input type="text" id="telefono" name="telefono" value='{{$value->telefono}}' placeholder="Escribe Tipo Unidad" required />
                           </label>
                         </div>
                       </div>
 
 
-                      <div class='row'>
-                        <div class='large-12 columns'>
-                          <label>pagina_web
-                            <input type='text' id='pagina_web' name='pagina_web' value='{{$value->pagina_web}}' placeholder='Escribe el nombre del Rol' required>
+                      <div class="row">
+                        <div class="large-12 columns">
+                          <label>Email
+                            <input type="text" id="email" name="email" value='{{$value->email}}' placeholder="Escribe Tipo Unidad" required />
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="large-12 columns">
+                          <label>Grupo
+                          @if($grupos)
+                            <select id="grupo_id" name="grupo_id"  required>
+                              <option></option>
+                              @foreach($grupos as $grupo)
+                              <option value="{{$grupo->id}}" @if(($grupo->id)==($value->grupo_id)) selected @endif>{{$grupo->nombre}}</option>                
+                              @endforeach
+                            </select> 
+                          @endif
+                          </label>
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="large-12 columns">
+                          <label>Estado
+                            <input type="text" id="estado" name="estado" value='{{$value->estado}}' placeholder="Escribe Tipo estado" required />
                           </label>
                         </div>
                       </div>
 
 
 
-                      <div class='row'>
-                        <div class='large-12 columns'>
+                      <div class="row">
+                        <div class="large-12 columns">
+                          <label>Sexo
+                            <select id="sexo" name="sexo"  required>
+                              <option value="M" @if(($value->sexo)=="M") selected @endif>Masculino</option>  
+                              <option value="F" @if(($value->sexo)=="F") selected @endif>Femenino</option>               
+                            </select> 
+
+                          </label>
+                        </div>
+                      </div>
+
+
+                      <div class="row">
+                        <div class="large-12 columns">
+                          <label>Foto
+                            <input type="text" name="foto" id="foto" value='{{$value->foto}}' placeholder="Escribre una Descripcion del rol"/>
+                          </label>
+                        </div>
+                      </div>
+
+
+                      <div class="row">
+                        <div class="large-12 columns">
                           <label>Descripción
-                            <textarea name='descripcion' id='descripcion' placeholder='Escribre una Descripcion del rol'>{{$value->descripcion}}</textarea>
+                            <textarea name="descripcion" id="descripcion" placeholder="Escribre una Descripcion del rol">{{$value->descripcion}}</textarea>
                           </label>
                         </div>
                       </div>
-
-
 
                   <div class='row'>
                         <div class='large-4 columns'>

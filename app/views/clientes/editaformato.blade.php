@@ -70,7 +70,10 @@
                       <div class='row'>
                         <div class='large-12 columns'>
                           <label>Sexo
-                            <input type='text' id='sexo' name='sexo' value='{{$value->sexo}}' placeholder='Escribe el nombre del Rol' required>
+                            <select id="sexo" name="sexo"  required>
+                              <option value="M" @if(($value->sexo)=="M") selected @endif>Masculino</option>  
+                              <option value="F" @if(($value->sexo)=="F") selected @endif>Femenino</option>               
+                            </select> 
                           </label>
                         </div>
                       </div>
