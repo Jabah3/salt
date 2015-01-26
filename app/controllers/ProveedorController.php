@@ -26,4 +26,68 @@ class ProveedorController extends BaseController {
 		return View::make('proveedores.index')->with('proveedores',$proveedores);
 	}
 
+		public function postGuarda()
+	{
+		$grupo = new Proveedor; 
+		$grupo->nombre=$nombre=Input::get('nombre');
+		$grupo->descripcion=$descripcion=Input::get('rfc');
+		$grupo->save();
+
+		return $nombre;
+	}
+
+
+
+	public function postGuardaedicion()
+	{
+		//$Rol = new Rol; 
+		Log::info('Estos son los Input: ', array('context' => Input::get()) );
+		Proveedor::where('id', '=', Input::get('id'))->update
+		(
+			array
+			(
+				'empresa'=>Input::get('empresa'),
+				'nombre'=>Input::get('nombre'),	
+				'rfc'=>Input::get('rfc'),
+				'pais'=>Input::get('pais'),	
+				'estado'=>Input::get('estado'),
+				'ciudad'=>Input::get('ciudad'),	
+				'codigo_postal'=>Input::get('codigo_postal'),	
+				'colonia'=>Input::get('colonia'),		
+				'calle'=>Input::get('calle'),	
+				'telefono'=>Input::get('telefono'),	
+				'email'=>Input::get('email'),
+				'activo'=>Input::get('activo'),		
+			)
+		);
+	}
+
+
+
+
+	public function postElimina()
+	{
+		$id=Input::get('id');
+	 	$elimina = Proveedor::find($id);
+	        
+	    if (is_null ($elimina))
+	    {
+	        App::abort(404);
+	    }
+	        
+	    $elimina->delete();
+	}
+
+
+
+
+	public function postFormatoedita()
+	{
+		$id=Input::get('id');
+
+		$proveedor = Proveedor::where('id', '=', $id)->get();
+		$uri=Input::get('uri');
+		return View::make('proveedores.editaformato')->with('proveedor',$proveedor)->with('uri',$uri);
+	}
+
 }
