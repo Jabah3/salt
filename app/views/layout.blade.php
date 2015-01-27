@@ -37,16 +37,11 @@
 
                 <!-- Left Nav Section -->
                 <ul class="left">
-                  <!--<li class="active"><a href="#">Inicio</a></li>-->
                   <li>{{ HTML::clever_link("/", 'Inicio' ) }}</li>
-                  <!--<li><a href="proveedores">Proveedores</a></li>-->
                   <li>{{ HTML::clever_link("proveedores", 'Proveedores' ) }}</li>
-                 <!-- <li><a href="clientes">Clientes</a></li>-->
                   <li>{{ HTML::clever_link("clientes", 'Clientes' ) }}</li>
-                  <!--<li><a href="#">Compras</a></li>-->
-                  <li>{{ HTML::clever_link("compras", 'Compras' ) }}</li>
-                  <!--<li><a href="#">Ventas</a></li>-->
-                  <li>{{ HTML::clever_link("ventas", 'Ventas' ) }}</li>
+                  <!--<li>{{ HTML::clever_link("compras", 'Compras' ) }}</li>
+                  <li>{{ HTML::clever_link("ventas", 'Ventas' ) }}</li>-->
                    <li>{{ HTML::clever_link("productos", 'Productos' ) }}</li>
                     
 
