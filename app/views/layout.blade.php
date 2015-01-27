@@ -48,15 +48,7 @@
                   <!--<li><a href="#">Ventas</a></li>-->
                   <li>{{ HTML::clever_link("ventas", 'Ventas' ) }}</li>
                    <li>{{ HTML::clever_link("productos", 'Productos' ) }}</li>
-                    <li class="has-dropdown">
-                      <a href="#">aaaaa</a>
-                        <ul class="dropdown">
-                          <!--<li><a href="#">Productos</a></li>-->
-                          <li>{{ HTML::clever_link("productos", 'Productos' ) }}</li>
-                          <!--<li><a href="#">Insumos</a></li>-->
-                          <li>{{ HTML::clever_link("insumos", 'Insumos' ) }}</li>
-                        </ul>
-                    </li>
+                    
 
 
 

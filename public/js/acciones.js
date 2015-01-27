@@ -56,14 +56,11 @@ function obtiene_activo(){
 	//valor=$('.active a').html();
 	var valor=$('.pagination .active').val();
 	//console.log("Valor= "+valor);		
-	/*if(valor === undefined){
-		return valor='1';	
-	}if(valor==2){
-		return valor='1';	
+	if(valor === undefined){
+		return valor='';	
 	}else{
 		return valor;	
-	}*/
-	return valor;	
+	}
 	
 }
 
