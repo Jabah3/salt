@@ -27,7 +27,7 @@ class Producto extends Eloquent implements UserInterface, RemindableInterface {
 
 	public function proveedor()
 	{
-		return $this->hasMany('Proveedor')
+		return $this->hasMany('Proveedor');
 	}
 
 	// public function compaProducto()

@@ -37,35 +37,46 @@
 
                 <!-- Left Nav Section -->
                 <ul class="left">
-                  <li class="active"><a href="#">Inicio</a></li>
-                  <li><a href="#">Proveedores</a></li>
-                  <li><a href="clientes">Clientes</a></li>
-                  <li><a href="#">Compras</a></li>
+                  <!--<li class="active"><a href="#">Inicio</a></li>-->
+                  <li>{{ HTML::clever_link("/", 'Inicio' ) }}</li>
+                  <!--<li><a href="proveedores">Proveedores</a></li>-->
+                  <li>{{ HTML::clever_link("proveedores", 'Proveedores' ) }}</li>
+                 <!-- <li><a href="clientes">Clientes</a></li>-->
+                  <li>{{ HTML::clever_link("clientes", 'Clientes' ) }}</li>
+                  <!--<li><a href="#">Compras</a></li>-->
+                  <li>{{ HTML::clever_link("compras", 'Compras' ) }}</li>
+                  <!--<li><a href="#">Ventas</a></li>-->
+                  <li>{{ HTML::clever_link("ventas", 'Ventas' ) }}</li>
+                   <li>{{ HTML::clever_link("productos", 'Productos' ) }}</li>
+                    <li class="has-dropdown">
+                      <a href="#">aaaaa</a>
+                        <ul class="dropdown">
+                          <!--<li><a href="#">Productos</a></li>-->
+                          <li>{{ HTML::clever_link("productos", 'Productos' ) }}</li>
+                          <!--<li><a href="#">Insumos</a></li>-->
+                          <li>{{ HTML::clever_link("insumos", 'Insumos' ) }}</li>
+                        </ul>
+                    </li>
 
-                  <li><a href="#">Ventas</a></li>
 
-                   <li class="has-dropdown">
-                    <a href="#">Productos</a>
-                    <ul class="dropdown">
-                      <li><a href="#">Productos</a></li>
-                      <li><a href="#">Insumos</a></li>
-                    </ul>
-                  </li>
 
                    <li class="has-dropdown">
                     <a href="#">Configuracion</a>
                     <ul class="dropdown">
-                      <li><a href="roles">Roles</a></li>
-                      <li><a href="unidad_medida">Unidad de Medida</a></li>
-                      <li><a href="grupos">Grupos</a></li>
-                      <li><a href="sucursales">Sucursales</a></li>
-                      <li><a href="usuarios">Usuarios</a></li>
-                      
+                     <!-- <li ><a href="roles">Roles</a></li>-->
+                      <li>{{ HTML::clever_link("roles", 'Roles' ) }}</li>
+                    <!--  <li><a href="unidad_medida">Unidad de Medida</a></li>-->
+                      <li>{{ HTML::clever_link("unidad_medida", 'Unidad de Medida' ) }}</li>
+                     <!-- <li><a href="grupos">Grupos</a></li>-->
+                      <li>{{ HTML::clever_link("grupos", 'Grupos' ) }}</li>
+                      <!--<li><a href="sucursales">Sucursales</a></li>-->
+                      <li>{{ HTML::clever_link("sucursales", 'Sucursales' ) }}</li>
+                     <!-- <li><a href="usuarios">Usuarios</a></li> -->
+                      <li>{{ HTML::clever_link("usuarios", 'Usuarios' ) }}</li>                     
                     </ul>
                   </li>
-
-
                 </ul>
+
               </section>
        </nav>
     </div>
@@ -87,3 +98,5 @@
     <script src="js/app.js"></script>
   </body>
 </html>
+
+

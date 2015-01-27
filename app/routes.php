@@ -61,3 +61,13 @@ Route::controller('recetas','RecetaController');
 Route::controller('ventas','VentaController');
 Route::controller('sucursales','SucursalController');
 Route::controller('punto_venta','PuntoventaController');
+
+
+HTML::macro('clever_link', function($route, $text) {	
+	if( Request::path() == $route ) {
+		$active = "class = 'active'";
+	}else{
+		$active = '';
+	}
+  return '<li ' . $active . '>' . link_to($route, $text) . '</li>';
+});

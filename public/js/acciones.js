@@ -2,21 +2,26 @@
 /**************** ELIMINA *******************/
 function elimina(id,uri){
 	if(confirm("¿Desea Eliminar el Registro?")){
-		var formData = {'id' : id };				
+		var formData = {'id' : id };
+		//alert(pagina_Actual);
 		$.ajax({
             type : "POST",
             url  : uri+"/elimina",
             data : formData,
             success:function(data, textStatus, jqXHR) 
 	        {
-	            $("#respuesta").text(data);
+	           $("#respuesta").text(data);
 	           alert("Se Elemino Correctamente");
-	           var pagina_Actual=obtiene_activo();
-            	getPosts(pagina_Actual);
+	           var pagina_Actual=obtiene_activo();		           
+               getPosts(pagina_Actual);
 	        },
 	        error: function(jqXHR, textStatus, errorThrown) 
-	        {
-	            alert("Ocurrio un Error al Eliminar");     
+	        {	        	
+	            //alert("Ocurrio un Error al Eliminar"+jqXHR.responseText+textStatus+errorThrown);
+	            if(confirm("Ocurrio un Error al Eliminar ¿Desea ver el error con detalle?")){
+	            	error_detalle(jqXHR);	
+	            }   
+	            
 	        }		        
 		});
 	}
@@ -24,11 +29,42 @@ function elimina(id,uri){
 
 
 
+
+function error_detalle(jqXHR){
+	/*if (jqXHR.status === 0) {
+        alert('Not connect.n Verify Network.');
+    } else if (jqXHR.status == 404) {
+        alert('Requested page not found. [404]');
+    } else if (jqXHR.status == 500) {
+        alert('Internal Server Error [500].');
+    } else if (exception === 'parsererror') {
+        alert('Requested JSON parse failed.');
+    } else if (exception === 'timeout') {
+        alert('Time out error.');
+    } else if (exception === 'abort') {
+        alert('Ajax request aborted.');
+    } else {*/
+        alert('Uncaught Error.n' + jqXHR.responseText);
+   // }
+}
+
+
+
+
+
 function obtiene_activo(){			
 	//valor=$('.active a').html();
-	valor=$('.pagination .active').val();
-	//console.log("Valor= "+valor);			
-	return valor;
+	var valor=$('.pagination .active').val();
+	//console.log("Valor= "+valor);		
+	/*if(valor === undefined){
+		return valor='1';	
+	}if(valor==2){
+		return valor='1';	
+	}else{
+		return valor;	
+	}*/
+	return valor;	
+	
 }
 
 
@@ -47,7 +83,10 @@ function formatoedita(id,uri){
 		},
 		error: function(jqXHR, textStatus, errorThrown) 
 		{
-		    alert("Ocurrio un Error al Editar");     
+		    //alert("Ocurrio un Error al Editar");  
+		    if(confirm("Ocurrio un Error al Editar ¿Desea ver el error con detalle?")){
+	            	error_detalle(jqXHR);	
+	        }     
 		}		        
 	});
 }
@@ -71,7 +110,10 @@ $(function(){
 		    },
 		    error: function(jqXHR, textStatus, errorThrown) 
 		    {
-		        alert("Ocurrio un Error al Guardar");     
+		        //alert("Ocurrio un Error al Guardar");  
+		        if(confirm("Ocurrio un Error al Guardar ¿Desea ver el error con detalle?")){
+	            	error_detalle(jqXHR);	
+	            }     
 		    }		        
 		});
 		event.preventDefault(); //STOP default action
@@ -93,7 +135,10 @@ $(function(){
 		    },
 		    error: function(jqXHR, textStatus, errorThrown) 
 		    {
-		        alert("Ocurrio un Error al Guardar");     
+		       // alert("Ocurrio un Error al Guardar");    
+		        if(confirm("Ocurrio un Error al Guardar ¿Desea ver el error con detalle?")){
+	            	error_detalle(jqXHR);	
+	            }   
 		    }		        
 		});
 		event.preventDefault(); //STOP default action
@@ -128,6 +173,6 @@ $(function(){
             $('#contenido').html(data);
             location.hash = page;
         }).fail(function () {
-            alert('Posts could not be loaded.');
+            alert('No se pudo cargar la pagina');
         });
     }
