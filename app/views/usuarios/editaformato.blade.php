@@ -29,14 +29,14 @@
                         </div>
                       </div>
 
-
+<!--
                       <div class='row'>
                         <div class='large-12 columns'>
                           <label>Contraseña
                             <input type='password' id='contrasena' name='contrasena' value='{{$value->contrasena}}' placeholder='Escribe el apellido' required>
                           </label>
                         </div>
-                      </div>
+                      </div>-->
 
 
                       <div class="row">
@@ -134,14 +134,16 @@
                         </div>
                       </div>
 
-
+<!--
                       <div class="row">
                         <div class="large-12 columns">
                           <label>Foto
-                            <input type="text" name="foto" id="foto" value='{{$value->foto}}' placeholder="Escribre una Descripcion del rol"/>
+                          <input type="file" name="foto" id="foto" value="{{$value->foto}}" value="asdas">
+                            
+                            <img width="30" src="img/{{$value->foto}}"/>
                           </label>
                         </div>
-                      </div>
+                      </div>-->
 
 
                       <div class="row">

@@ -34,9 +34,12 @@ class UsuarioController extends BaseController {
 
 	public function postGuarda()
 	{
+
+
+
+
 		$Usuarios = new Usuario; 
 		$Usuarios->usuario=$usuario=Input::get('usuario');
-		//$Usuarios->contrasena=$contrasena=Input::get('contrasena');
 		$Usuarios->contrasena=Hash::make(Input::get('contrasena'));
 		$Usuarios->nombre=$nombres=Input::get('nombre');
 	    $Usuarios->apellido=$apellidos=Input::get('apellido');
@@ -49,7 +52,17 @@ class UsuarioController extends BaseController {
 	    $Usuarios->estado=$estado=Input::get('estado');
 	    $Usuarios->activo=1;
 	    $Usuarios->sexo=$sexo=Input::get('sexo');
-	    $Usuarios->foto=$foto=Input::get('foto');
+		if(Input::hasFile('foto')) {
+			$fecha_arch=date('dmYHis__');
+			$archivo = Input::file('foto')->getClientOriginalName();
+			$extension = Input::file('foto')->getClientOriginalExtension();
+			$archivo = $fecha_arch.$usuario.".".$extension;
+			//$path = Input::file('foto')->getRealPath();			
+			//$size = Input::file('foto')->getSize();
+			//$mime = Input::file('foto')->getMimeType();	       	
+	        Input::file('foto')->move('img/usuarios/',$archivo);
+	        $Usuarios->foto=$archivo;
+		}
 	    $Usuarios->descripcion=$descripcion=Input::get('descripcion');
 		$Usuarios->save();
 
@@ -79,7 +92,7 @@ class UsuarioController extends BaseController {
 			    'estado'		=>Input::get('estado'),
 			    'activo'		=>1,
 			    'sexo'			=>Input::get('sexo'),
-			    'foto'			=>Input::get('foto'),
+			    //'foto'			=>Input::get('foto'),
 			    'descripcion'	=>Input::get('descripcion')
 
 			)

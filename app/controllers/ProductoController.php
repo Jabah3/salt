@@ -31,7 +31,7 @@ class ProductoController extends BaseController {
 	public function postGuarda()
 	{
 		$Producto = new Producto; 
-		$Producto->nombre           =Input::get('nombre');
+		$Producto->nombre          =$nombre=Input::get('nombre');
 		$Producto->materia_prima    =Input::get('materia_prima');
 		$Producto->codigo_barra     =Input::get('codigo_barra');
 		$Producto->precio_venta     =Input::get('precio_venta');
@@ -43,7 +43,23 @@ class ProductoController extends BaseController {
 		//$Producto->stock            =Input::get('stock');
 		$Producto->stock_minimo     =Input::get('stock_minimo');
 		$Producto->stock_maximo     =Input::get('stock_maximo');
-		$Producto->imagen           =Input::get('imagen');
+		//$Producto->imagen           =Input::get('imagen');
+
+		if(Input::hasFile('imagen')) {
+			$fecha_arch=date('dmYHis__');
+			$archivo = Input::file('imagen')->getClientOriginalName();
+			$extension = Input::file('imagen')->getClientOriginalExtension();
+			$archivo = $fecha_arch.$nombre.".".$extension;
+			//$path = Input::file('imagen')->getRealPath();			
+			//$size = Input::file('imagen')->getSize();
+			//$mime = Input::file('imagen')->getMimeType();	       	
+	        Input::file('imagen')->move('img/productos',$archivo);
+	        $Producto->imagen=$archivo;
+	        //$Producto->imagen           =Input::get('imagen');
+		}
+
+
+
 		$Producto->cantidad         =Input::get('cantidad');
 		//$Producto->proveedores_id   =Input::get('proveedores_id');
 		$Producto->codigo           =Input::get('codigo');

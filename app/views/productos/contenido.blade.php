@@ -4,7 +4,8 @@
     <tr>
       <th width="200">Nombre</th>
       <th width="150">Descripción</th>
-      <th width="150">Acciones</th>
+      <th width="150">Imagen</th>
+      <th width="200">Acciones</th>
     </tr>
   </thead>
 
@@ -15,6 +16,7 @@
       <input type="hidden" name="id" id="id" value="{{$producto->id}}" />
       <td>{{$producto->nombre}}</td>
       <td>{{$producto->descripcion}}</td>
+      <td><img width="100" src="img/productos/{{$producto->imagen}}"/></td>
       <td> 
 
         <ul class="button-group">

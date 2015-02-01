@@ -193,7 +193,7 @@
         <div class="row">
           <div class="large-12 columns">
             <label>Foto
-              <textarea name="foto" id="foto" placeholder="Escribre una Descripcion del rol"></textarea>
+              <input type="file" name="foto" id="foto" placeholder="Escribre una Descripcion del rol">
             </label>
           </div>
         </div>

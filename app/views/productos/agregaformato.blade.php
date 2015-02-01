@@ -115,7 +115,8 @@
         <div class="row">
           <div class="large-12 columns">
             <label>Imagen
-              <input type="text" id="imagen" name="imagen" placeholder="Escribe Tipo Unidad" required />
+              <!--<input type="text" id="imagen" name="imagen" placeholder="Escribe Tipo Unidad" required />-->
+              <input type="file" id="imagen" name="imagen" placeholder="Imagen">
             </label>
           </div>
         </div>

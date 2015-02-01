@@ -92,14 +92,18 @@ function formatoedita(id,uri){
 //Editaa y Agrega
 $(function(){
 	$('#FormularioAgrega').submit(function(event) {
+		var formData = new FormData(this);		
 		$.ajax({
 	        type : $(this).attr("method"),
-	        url  : $(this).attr("action"),
-	        data : $(this).serializeArray(),
+	        url  : $(this).attr("action"),	        
+	        processData: false,
+      		contentType: false,
+      		//data : $(this).serializeArray(),
+	        data : formData,	    
 	        success:function(data, textStatus, jqXHR) 
 		    {
 		        //$("#respuesta").text(data);
-		        //refresh_registros();	
+		        //refresh_registros();			        
 		        $('#ModalAgrega').foundation('reveal', 'close');		            		            
 		        $('#FormularioAgrega').trigger("reset");	 
 		        var pagina_Actual=obtiene_activo();
@@ -118,10 +122,14 @@ $(function(){
 	});	
 
 	$('body').on('submit','#FormularioGuardaEdicion',function(event) {
+		var formData = new FormData(this);	
 		$.ajax({
 	        type : $(this).attr("method"),
 	        url  : $(this).attr("action"),
-	        data : $(this).serializeArray(),
+	        processData: false,
+      		contentType: false,
+	        //data : $(this).serializeArray(),
+	        data : formData,
 	        success:function(data, textStatus, jqXHR) 
 		    {
 		        //$("#respuesta").text(data);

@@ -1,4 +1,5 @@
-@extends('layoutPuntoVenta')
+
+@extends('layout')
 
 
 

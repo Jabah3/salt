@@ -9,6 +9,7 @@
       <th>grupo</th>
       <th>Estado</th>
       <th>Descripción</th>
+      <th>Imagen</th>
       <th width="200">Acciones</th>
     </tr>
   </thead>
@@ -31,6 +32,7 @@
         @endif      
       </td>
       <td >{{$usuario->descripcion}}</td>
+      <td><img width="30" src="img/usuarios/{{$usuario->foto}}" /></td>
       <td> 
         <ul class="button-group">
           <li>

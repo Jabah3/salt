@@ -30,7 +30,8 @@
                     <ul class="dropdown">
                       <li><a href="#">Usuarios</a></li>
                       <li><a href="#">Configuración</a></li>
-                      <li class="active"><a href="#"> <i class="icon ion-loading-a"></i> Cerrar Sesion</a></li>
+                      <!--<li class="active"><a href="#"> <i class="icon ion-loading-a"></i> Cerrar Sesion</a></li>-->
+                      {{ HTML::clever_link("/", 'Cerrar Sesion' ) }}
                     </ul>
                   </li>
                 </ul>
@@ -40,6 +41,7 @@
                   <li>{{ HTML::clever_link("/", 'Inicio' ) }}</li>
                   <li>{{ HTML::clever_link("proveedores", 'Proveedores' ) }}</li>
                   <li>{{ HTML::clever_link("clientes", 'Clientes' ) }}</li>
+                  <li>{{ HTML::clever_link("punto_venta", 'Punto de Venta' ) }}</li>
                   <!--<li>{{ HTML::clever_link("compras", 'Compras' ) }}</li>
                   <li>{{ HTML::clever_link("ventas", 'Ventas' ) }}</li>-->
                    <li>{{ HTML::clever_link("productos", 'Productos' ) }}</li>
