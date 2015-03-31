@@ -89,7 +89,7 @@
 
 
 <div class="large-7 columns"> 
-  @include('puntoventa.slider')
+  {{--@include('puntoventa.slider')--}}
 </div>
 
 

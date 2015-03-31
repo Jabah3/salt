@@ -16,7 +16,7 @@ ul{
 @if($productos)   
     @foreach($productos as $prod)
     <li class="articulo" onclick="myFunction({{$prod->id}},'{{$prod->nombre}}','{{$prod->precio_venta}}')">
-		<img src="{{'imagenes/'.$prod->imagen}}" style="width:25px; float:left; margin-right:6px" />
+		<img src="{{'img/productos/'.$prod->imagen}}" style="width:25px; float:left; margin-right:6px" />
 		{{$prod->nombre}}
 	</li>
     @endforeach

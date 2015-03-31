@@ -1,69 +1,102 @@
-
-@extends('layout')
-
-
-
-
+@extends('layoutPuntoVenta')
 
 @section('content')
 
 
 
-		<section class="row">
-			<section id="contenido">
-			@include('puntoventa.contenido')
-			</section>
-		</section>
+<div class="row collapse">
+
+	<div class="small-9 columns">
+
+
+<form>
+  <div class="row collapse">
+    <div class="small-3 large-2 columns">
+      <span class="prefix">http://</span>
+    </div>
+    <div class="small-9 large-10 columns">
+      <input type="text" placeholder="Enter your URL...">
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-12 columns">
+      <div class="row collapse">
+        <div class="small-10 columns">
+          <input type="text" placeholder="Hex Value">
+        </div>
+        <div class="small-2 columns">
+          <a href="#" class="button postfix">Go</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-6 columns">
+      <div class="row collapse prefix-radius">
+        <div class="small-3 columns">
+          <span class="prefix">Label</span>
+        </div>
+        <div class="small-9 columns">
+          <input type="text" placeholder="Value">
+        </div>
+      </div>
+    </div>
+    <div class="large-6 columns">
+      <div class="row collapse postfix-radius">
+        <div class="small-9 columns">
+          <input type="text" placeholder="Value">
+        </div>
+        <div class="small-3 columns">
+          <span class="postfix">Label</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="large-6 columns">
+      <div class="row collapse prefix-round">
+        <div class="small-3 columns">
+          <a href="#" class="button prefix">Go</a>
+        </div>
+        <div class="small-9 columns">
+          <input type="text" placeholder="Value">
+        </div>
+      </div>
+    </div>
+    <div class="large-6 columns">
+      <div class="row collapse postfix-round">
+        <div class="small-9 columns">
+          <input type="text" placeholder="Value">
+        </div>
+        <div class="small-3 columns">
+          <a href="#" class="button postfix">Go</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd
+</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd
+</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd
+</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd
+</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd
+</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd
+</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd</br>sdsdsd
+
+rtrtrt
 
 
 
-		<div id="respuesta"></div>
 
 
+	</div>
 
 
-		<?php $uri = Request::path(); ?> 
-		{{-- @include('punto_venta.agregaformato') --}}
+	<div class="small-3 columns">
+		dfr
+	</div>
+</div>
 
-
-
-
-
-
-		<!-- Paginacion con Ajax -->
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
-	    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-	    <script src="bower_components/foundation/js/foundation.min.js"></script>
-	    <script src="js/app.js"></script>
-	    <!--Contiene acciones como guardar,editar,eliminar-->
-		<script src="js/acciones.js"></script>
-
-<script type="text/javascript">
-$("#codigo").focus();
-
-$(document).ready(function(){
-	$("#cajabusqueda").on('keyup', function(){
-		var valor = $(this).val();
-		var formData = {'valor' : valor };
-			$.ajax({
-		        type : "POST",
-		        url  : "punto_venta/busqueda",
-		        data : formData,
-		        success:function(data, textStatus, jqXHR) 
-			    {	
-			    	$("#display").css({"display":"block"});   
-			        $("#display").html(data);   
-			    },
-			    error: function(jqXHR, textStatus, errorThrown) 
-			    {
-			        alert("Ocurrio un Error al Buscar");     
-			    }		        
-			});
-			event.preventDefault(); //STOP default action
-		    //event.unbind(); //unbind. to stop multiple form submit.
-	});		
-});
-
-</script>
 
 @stop

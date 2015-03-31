@@ -22,6 +22,18 @@ Route::get('ejemplo', function()
 	return "Holaaa";
 });
 
+Route::get('pruebas', function()
+{
+	return View::make('pruebas.index');
+	//return "Holaaa";
+});
+
+Route::get('google', function()
+{
+	return View::make('pruebas.google');
+	//return "Holaaa";
+});
+
 
 
 Route::get('pagina', function()
